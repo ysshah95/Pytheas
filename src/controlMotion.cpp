@@ -44,9 +44,25 @@
 
 #include <stdlib.h>
 #include <ros/ros.h>
+#include <geometry_msgs/Twist.h>
 #include "controlMotion.hpp"
  /**
  * @brief ControlMotion constructor
  */
-ControlMotion::ControlMotion() {
+ControlMotion::ControlMotion(double forwardSpeed)
+    : forwardSpeed(forwardSpeed) {
+  detectObject = new DetectObject(1.0);
+}
+ /**
+ * @brief Determine a vehicle action based on results from the obstacle detector
+ */
+geometry_msgs::Twist ControlMotion::determineAction() {
+  geometry_msgs::Twist msg;
+  msg.linear.x = 0.0;
+  msg.linear.y = 0.0;
+  msg.linear.z = 0.0;
+  msg.angular.x = 0.0;
+  msg.angular.y = 0.0;
+  msg.angular.z = 0.0;
+   return msg;
 }

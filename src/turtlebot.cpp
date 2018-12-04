@@ -49,4 +49,12 @@
  * @brief Turtlebot constructor
  */
 Turtlebot::Turtlebot() {
+    controlMotion = new ControlMotion(1.0)
+}
+
+/**
+ * @brief drive the turtlebot autonomously using laser scan data as sensor feedback
+ */
+void Turtlebot::drive() {
+  return;
 }

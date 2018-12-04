@@ -42,6 +42,11 @@
  * @copyright BSD 3-Clause License
  */
 
+#include <stdlib.h>
+#include <ros/ros.h>
+#include "controlMotion.hpp"
+#include "cam.hpp"
+
 /**
  * @brief Turtlebot class handles the camera and motion controller interactions for turtlebot
  */
@@ -51,5 +56,23 @@ class Turtlebot {
    * @brief Turtlebot constructor
    */
   Turtlebot();
-  private:
+
+  /**
+   * @brief drive the vehicle autonomously using laser scan data as sensor feedback
+   */
+  void drive();
+
+ private:
+  /**
+   * @brief container for the camera object
+   */
+  Cam cam;
+   /**
+   * @brief container for the motion controller object
+   */
+  ControlMotion *controlMotion;
+   /**
+   * @brief container for a ROS publisher to publish vehicle motion commands
+   */
+  ros::Publisher drivePub;
 };

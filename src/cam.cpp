@@ -42,6 +42,7 @@
  * @copyright BSD 3-Clause License
  */
 
+#include <string>
 #include <stdlib.h>
 #include <ros/ros.h>
 #include "cam.hpp"
@@ -49,4 +50,11 @@
  * @brief Cam constructor
  */
 Cam::Cam() {
+}
+
+/**
+ * @brief Take an image of the current RGB camera view for later analysis
+ */
+std::string Cam::takeImage() {
+	return "";
 }

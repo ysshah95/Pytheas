@@ -42,6 +42,10 @@
  * @copyright BSD 3-Clause License
  */
 
+#include <stdlib.h>
+#include <ros/ros.h>
+#include <sensor_msgs/LaserScan.h>
+
 /**
  * @brief detectObject class handles determining if the turtlebot is going to collide using laser scans
  */
@@ -50,6 +54,35 @@ class DetectObject {
   /**
    * @brief ObstacleDetection constructor
    */
-  DetectObject();
+  DetectObject(double threshold);
+
+  /**
+   * @brief detect if the vehicle is about to collide with an obstacle or not
+   */
+  bool detectObstacle(double threshold);
+   /**
+   * @brief return the current threshold for how close the vehicle should get to an object
+   */
+  double getDistanceThreshold();
+   /**
+   * @brief set the threshold for how close the vehicle should get to an object
+   */
+  void setDistanceThreshold(double threshold);
+
+
   private:
+   /**
+   * @brief container for a ROS node handler
+   */
+   ros::NodeHandle nh;
+
+   /**
+   * @brief container for a ROS subscriber for the laser scan data
+   */
+   ros::Subscriber laserSub;
+
+   /**
+   * @brief container for the threshold for how close the vehicle should get to an object
+   */
+   double distanceThreshold;
 };

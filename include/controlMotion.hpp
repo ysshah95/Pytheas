@@ -42,6 +42,12 @@
  * @copyright BSD 3-Clause License
  */
 
+#include <stdlib.h>
+#include <ros/ros.h>
+#include <geometry_msgs/Twist.h>
+#include "detectObject.hpp"
+
+
 /**
  * @brief controlMotion class handles determining turtlebot control actions
  */
@@ -50,6 +56,34 @@ class ControlMotion {
   /**
    * @brief ControlMotion constructor
    */
-  ControlMotion();
-  private:
+  ControlMotion(double forwardSpeed);
+
+   /**
+   * @brief Determine a turtlebot action based on results from the obstacle detector
+   */
+  geometry_msgs::Twist determineAction();
+
+   /**
+   * @brief change the forward speed of the robot
+   */
+  void setForwardSpeed(double speed) {
+    forwardSpeed = speed;
+  };
+   /**
+   * @brief return the current forward speed of the robot
+   */
+  double getForwardSpeed() {
+    return forwardSpeed;
+  };
+
+ private:
+  /**
+   * @brief container for an obstacle detector for the turtlebot
+   */
+  DetectObject *detectObject;
+
+   /**
+   * @brief container for the forward speed of the turtlebot
+   */
+  double forwardSpeed;
 };
