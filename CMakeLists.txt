@@ -207,7 +207,7 @@ catkin_add_gtest(
   src/cam.cpp
   src/controlMotion.cpp
   src/detectObject.cpp
-  stc/turtlebot.cpp)
+  src/turtlebot.cpp)
 
 if(TARGET turtlebotFinalTest)
   target_link_libraries(turtlebotFinalTest ${catkin_LIBRARIES})

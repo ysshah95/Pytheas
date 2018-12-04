@@ -59,7 +59,7 @@ class DetectObject {
   /**
    * @brief detect if the vehicle is about to collide with an obstacle or not
    */
-  bool detectObstacle(double threshold);
+  bool detectObstacle();
    /**
    * @brief return the current threshold for how close the vehicle should get to an object
    */

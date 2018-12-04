@@ -49,7 +49,7 @@
  * @brief Turtlebot constructor
  */
 Turtlebot::Turtlebot() {
-    controlMotion = new ControlMotion(1.0)
+    controlMotion = new ControlMotion(1.0);
 }
 
 /**
