@@ -1,0 +1,4 @@
+<launch>
+  <node pkg="pytheas" name="FinalProject"  type="turtlebotFinal" />
+  <test pkg="pytheas" test-name="enpm808_finalTest" type="turtlebotFinalTest" />
+</launch>

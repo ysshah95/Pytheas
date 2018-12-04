@@ -12,6 +12,8 @@ find_package(catkin REQUIRED COMPONENTS
   rospy
   sensor_msgs
   std_msgs
+  geometry_msgs
+  move_base_msgs
 )
 
 ## System dependencies are found with CMake's conventions
@@ -117,7 +119,7 @@ catkin_package(
 ## Specify additional locations of header files
 ## Your package locations should be listed before other locations
 include_directories(
-# include
+  include
   ${catkin_INCLUDE_DIRS}
 )
 
@@ -134,7 +136,7 @@ include_directories(
 ## Declare a C++ executable
 ## With catkin_make all packages are built within a single CMake context
 ## The recommended prefix ensures that target names across packages don't collide
-# add_executable(${PROJECT_NAME}_node src/pytheas_node.cpp)
+add_executable(turtlebotFinal src/main.cpp src/cam.cpp src/controlMotion.cpp src/detectObject.cpp src/turtlebot.cpp)
 
 ## Rename C++ executable without prefix
 ## The above recommended prefix causes long target names, the following renames the
@@ -147,9 +149,9 @@ include_directories(
 # add_dependencies(${PROJECT_NAME}_node ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
 
 ## Specify libraries to link a library or executable target against
-# target_link_libraries(${PROJECT_NAME}_node
-#   ${catkin_LIBRARIES}
-# )
+target_link_libraries(turtlebotFinal
+  ${catkin_LIBRARIES}
+)
 
 #############
 ## Install ##
@@ -190,11 +192,19 @@ include_directories(
 ## Testing ##
 #############
 
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -g -O0") # debug, no optimisation
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} --coverage") # enabling coverage
+
 ## Add gtest based cpp test target and link libraries
-# catkin_add_gtest(${PROJECT_NAME}-test test/test_pytheas.cpp)
-# if(TARGET ${PROJECT_NAME}-test)
-#   target_link_libraries(${PROJECT_NAME}-test ${PROJECT_NAME})
-# endif()
+catkin_add_gtest(turtlebotFinalTest test/turtlebotFinalTest.launch test/main.cpp test/turtlebotTest.cpp test/camTest.cpp test/controlMotionTest.cpp test/detectObjectTest.cpp)
+if(TARGET turtlebotFinalTest)
+  target_link_libraries(turtlebotFinalTest ${catkin_LIBRARIES})
+  add_dependencies(
+	  turtlebotFinalTest
+	  turtlebotFinal
+	  ${catkin_EXPORTED_TARGETS}
+  )
+endif()
 
 ## Add folders to be run by python nosetests
 # catkin_add_nosetests(test)
