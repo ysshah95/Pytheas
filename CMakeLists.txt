@@ -14,6 +14,10 @@ find_package(catkin REQUIRED COMPONENTS
   std_msgs
   geometry_msgs
   move_base_msgs
+  cv_bridge
+  genmsg
+  message_generation
+  image_transport
 )
 
 ## System dependencies are found with CMake's conventions
@@ -76,6 +80,10 @@ find_package(catkin REQUIRED COMPONENTS
 #   sensor_msgs#   std_msgs
 # )
 
+## Generate added messages and services
+add_service_files(FILES takeImageService.srv)
+generate_messages(DEPENDENCIES std_msgs)
+
 ################################################
 ## Declare ROS dynamic reconfigure parameters ##
 ################################################
@@ -118,9 +126,11 @@ catkin_package(
 
 ## Specify additional locations of header files
 ## Your package locations should be listed before other locations
+find_package( OpenCV REQUIRED COMPONENTS core imgproc highgui )
 include_directories(
   include
   ${catkin_INCLUDE_DIRS}
+  ${OpenCV_INCLUDE_DIRS}
 )
 
 ## Declare a C++ library
@@ -149,8 +159,10 @@ add_executable(turtlebotFinal src/main.cpp src/cam.cpp src/controlMotion.cpp src
 # add_dependencies(${PROJECT_NAME}_node ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
 
 ## Specify libraries to link a library or executable target against
-target_link_libraries(turtlebotFinal
+target_link_libraries(
+  turtlebotFinal
   ${catkin_LIBRARIES}
+  ${OpenCV_LIBS}
 )
 
 #############
@@ -210,7 +222,7 @@ catkin_add_gtest(
   src/turtlebot.cpp)
 
 if(TARGET turtlebotFinalTest)
-  target_link_libraries(turtlebotFinalTest ${catkin_LIBRARIES})
+  target_link_libraries(turtlebotFinalTest ${catkin_LIBRARIES} ${OpenCV_LIBS})
   add_dependencies(
 	  turtlebotFinalTest
 	  turtlebotFinal

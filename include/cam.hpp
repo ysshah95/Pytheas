@@ -46,6 +46,9 @@
 #include <vector>
 #include <stdlib.h>
 #include <ros/ros.h>
+#include <sensor_msgs/Image.h>
+#include <pytheas/takeImageService.h>
+
 
 
 /**
@@ -62,22 +65,38 @@ class Cam {
   /**
    * @brief Take an image of the current RGB camera view for later analysis
    */
-  std::string takeImage();
+  bool takeImage(pytheas::takeImageService::Request &req,
+			pytheas::takeImageService::Response &resp);
 
-  private:
+  
+  /**
+	 * @brief Camera topic callback takes a picture if flag has been set
+	 */
+	void cameraCallback(const sensor_msgs::ImageConstPtr& msg);
+
+  std::vector<std::string> getSavedImageFilenames() {
+    return savedImages;
+  };
+
+ private:
+
   /**
    * @brief container for the filenames of each saved image
    */
   std::vector<std::string> savedImages;
 
-   /**
-   * @brief container for a ROS node handler
+  /**
+   * @brief Flag denoting whether or not to take an image on next receipt of camera topic
+   */
+  bool takeImageFlag;
+
+  /**
+   * @brief Container for takeImage service
+   */
+  ros::ServiceClient cameraClient;
+
+  /**
+   * @brief Node handler for subscribing to service and topics
    */
   ros::NodeHandle nh;
-  
-   /**
-   * @brief container for a ROS subscriber for camera topics
-   */
-  ros::Subscriber cameraSub;
-  
 };
