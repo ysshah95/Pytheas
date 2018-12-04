@@ -1,7 +1,6 @@
 # Project Pytheas 
 
 [![Build Status](https://travis-ci.org/ysshah95/Pytheas.svg?branch=master)](https://travis-ci.org/ysshah95/Pytheas)
-
 [![Coverage Status](https://coveralls.io/repos/github/ysshah95/Pytheas/badge.svg?branch=master)](https://coveralls.io/github/ysshah95/Pytheas?branch=master)
 
 ## Overview
@@ -51,7 +50,11 @@ TODO
 
 ## Known Issues/Bugs 
 Following are the known bugs with the current build:
+```
 TODO
+```
 
 ## API and other developer documentation
+```
 TODO
+```
