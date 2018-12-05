@@ -58,7 +58,7 @@
  */
 Cam::Cam() :
 	takeImageFlag(false) {
-		// Register client to "textService" service
+		// Register client to "takeImage" service
 	cameraClient = nh.serviceClient < pytheas::takeImageService > ("takeImage");
 }
 
