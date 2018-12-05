@@ -44,6 +44,7 @@
 
 #include <stdlib.h>
 #include <ros/ros.h>
+#include <geometry_msgs/Twist.h>
 #include <pytheas/takeImageService.h>
 #include "turtlebot.hpp"
  /**
@@ -63,11 +64,18 @@ Turtlebot::Turtlebot() {
  	// Register service with the master
 	server = nh.advertiseService("takeImageService", &Cam::takeImage,
 			cam);
+	
+	// Set up publisher:
+	drivePub = nh.advertise < geometry_msgs::Twist
+			> ("/mobile_base/commands/velocity", 1000);
 }
 
 /**
  * @brief drive the turtlebot autonomously using laser scan data as sensor feedback
  */
 void Turtlebot::drive() {
-  //	ROS_INFO_STREAM("Vehicle node running...");
+	// Grab current vehicle action:
+	geometry_msgs::Twist vehicleCommand = controlMotion->getVehicleAction();
+ 	// Publish command:
+	drivePub.publish(vehicleCommand);
 }
