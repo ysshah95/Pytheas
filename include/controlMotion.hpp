@@ -45,6 +45,7 @@
 #include <stdlib.h>
 #include <ros/ros.h>
 #include <geometry_msgs/Twist.h>
+#include <sensor_msgs/LaserScan.h>
 #include "detectObject.hpp"
 
 
@@ -61,7 +62,7 @@ class ControlMotion {
    /**
    * @brief Determine a turtlebot action based on results from the obstacle detector
    */
-  geometry_msgs::Twist determineAction();
+  void determineAction(const sensor_msgs::LaserScan::ConstPtr& msg);
 
    /**
    * @brief change the forward speed of the robot
@@ -76,6 +77,14 @@ class ControlMotion {
     return forwardSpeed;
   };
 
+	/**
+	 * @brief return the current vehicle action
+	 */
+	geometry_msgs::Twist getVehicleAction() {
+		return vehicleAction;
+	}
+	;
+
  private:
   /**
    * @brief container for an obstacle detector for the turtlebot
@@ -86,4 +95,9 @@ class ControlMotion {
    * @brief container for the forward speed of the turtlebot
    */
   double forwardSpeed;
+
+  /**
+	 * @brief Container for Twist message to be sent the vehicle on next "drive" command
+	 */
+	geometry_msgs::Twist vehicleAction;
 };

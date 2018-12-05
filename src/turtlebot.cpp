@@ -44,17 +44,30 @@
 
 #include <stdlib.h>
 #include <ros/ros.h>
+#include <pytheas/takeImageService.h>
 #include "turtlebot.hpp"
  /**
  * @brief Turtlebot constructor
  */
 Turtlebot::Turtlebot() {
     controlMotion = new ControlMotion(1.0);
+    cam = new Cam();
+
+    // Set up subscribers
+	cameraSub = nh.subscribe < sensor_msgs::Image
+			> ("/camera/rgb/image_raw", 500, &Cam::cameraCallback, cam);
+
+ 	laserSub = nh.subscribe < sensor_msgs::LaserScan
+			> ("/scan", 500, &ControlMotion::determineAction, controlMotion);
+
+ 	// Register service with the master
+	server = nh.advertiseService("takeImageService", &Cam::takeImage,
+			cam);
 }
 
 /**
  * @brief drive the turtlebot autonomously using laser scan data as sensor feedback
  */
 void Turtlebot::drive() {
-  return;
+  //	ROS_INFO_STREAM("Vehicle node running...");
 }

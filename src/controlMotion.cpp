@@ -51,18 +51,34 @@
  */
 ControlMotion::ControlMotion(double forwardSpeed)
     : forwardSpeed(forwardSpeed) {
-  detectObject = new DetectObject(1.0);
+    detectObject = new DetectObject(1.0);
+    // Intialize turtlebot action to stay still:
+    vehicleAction.linear.x = 0.0;
+    vehicleAction.linear.y = 0.0;
+    vehicleAction.linear.z = 0.0;
+    vehicleAction.angular.x = 0.0;
+    vehicleAction.angular.y = 0.0;
+    vehicleAction.angular.z = 0.0;
 }
  /**
  * @brief Determine a vehicle action based on results from the obstacle detector
  */
-geometry_msgs::Twist ControlMotion::determineAction() {
-  geometry_msgs::Twist msg;
-  msg.linear.x = 0.0;
-  msg.linear.y = 0.0;
-  msg.linear.z = 0.0;
-  msg.angular.x = 0.0;
-  msg.angular.y = 0.0;
-  msg.angular.z = 0.0;
-   return msg;
+void ControlMotion::determineAction(
+    const sensor_msgs::LaserScan::ConstPtr& msg) {
+    geometry_msgs::Twist action;
+    action.linear.x = 0.0;
+    action.linear.y = 0.0;
+    action.linear.z = 0.0;
+    action.angular.x = 0.0;
+    action.angular.y = 0.0;
+    action.angular.z = 0.0;
+
+    if (detectObject->detectObstacle(*msg)) {
+      ROS_INFO_STREAM("Laser scan data received...");
+    } else {
+    } 
+
+    // Set vehicle action:
+	vehicleAction = action;
+    
 }

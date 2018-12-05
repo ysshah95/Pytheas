@@ -66,7 +66,7 @@ class Turtlebot {
   /**
    * @brief container for the camera object
    */
-  Cam cam;
+  Cam *cam;
    /**
    * @brief container for the motion controller object
    */
@@ -75,4 +75,21 @@ class Turtlebot {
    * @brief container for a ROS publisher to publish vehicle motion commands
    */
   ros::Publisher drivePub;
+
+  /**
+   * @brief container for a ROS node handler
+   */
+  ros::NodeHandle nh;
+   /**
+   * @brief container for a ROS subscriber for camera topics
+   */
+  ros::Subscriber cameraSub;
+   /**
+   * @brief container for a ROS subscriber for laser scan topics
+   */
+  ros::Subscriber laserSub;
+   /**
+   * @brief Container for service server (for takeImage service)
+   */
+  ros::ServiceServer server;
 };

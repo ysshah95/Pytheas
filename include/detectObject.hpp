@@ -57,32 +57,38 @@ class DetectObject {
   DetectObject(double threshold);
 
   /**
-   * @brief detect if the vehicle is about to collide with an obstacle or not
+   * @brief Callback function for the laser scan. Detects if the vehicle is about to collide with an obstacle or not
    */
-  bool detectObstacle();
-   /**
+  bool detectObstacle(const sensor_msgs::LaserScan msg);
+
+  /**
    * @brief return the current threshold for how close the vehicle should get to an object
    */
-  double getDistanceThreshold();
-   /**
+  double getDistanceThreshold() {
+     return distanceThreshold;
+  };
+
+  /**
    * @brief set the threshold for how close the vehicle should get to an object
    */
-  void setDistanceThreshold(double threshold);
+  void setDistanceThreshold(double threshold) {
+     distanceThreshold = threshold;
+  };
 
 
-  private:
-   /**
+ private:
+  /**
    * @brief container for a ROS node handler
    */
    ros::NodeHandle nh;
 
-   /**
+  /**
    * @brief container for a ROS subscriber for the laser scan data
    */
    ros::Subscriber laserSub;
 
-   /**
+  /**
    * @brief container for the threshold for how close the vehicle should get to an object
    */
-   double distanceThreshold;
+  double distanceThreshold;
 };

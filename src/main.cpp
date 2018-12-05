@@ -44,8 +44,9 @@
 
 #include <stdlib.h>
 #include <ros/ros.h>
+#include "turtlebot.hpp"
 
- int main(int argc, char **argv) {
+int main(int argc, char **argv) {
   // Initialize ROS and name our node "enpm808_final"
   ros::init(argc, argv, "FinalProject");
 
@@ -56,7 +57,13 @@
    // Set up the publisher rate to 10 Hz
   ros::Rate loop_rate(10);
 
-   while (ros::ok()) {
+  // Vehicle container
+	Turtlebot *turtlebot = new Turtlebot();
+
+  while (ros::ok()) {
+
+    turtlebot->drive();
+
     // "Spin" a callback in case we set up any callbacks
     ros::spinOnce();
 
