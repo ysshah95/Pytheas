@@ -204,31 +204,35 @@ target_link_libraries(
 ## Testing ##
 #############
 
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -g -O0") # debug, no optimisation
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} --coverage") # enabling coverage
+if (CATKIN_ENABLE_TESTING)
 
-## Add gtest based cpp test target and link libraries
-catkin_add_gtest(
-  turtlebotFinalTest 
-  test/turtlebotFinalTest.launch 
-  test/main.cpp 
-  test/turtlebotTest.cpp 
-  test/camTest.cpp 
-  test/controlMotionTest.cpp 
-  test/detectObjectTest.cpp
-  src/cam.cpp
-  src/controlMotion.cpp
-  src/detectObject.cpp
-  src/turtlebot.cpp)
+  set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -g -O0") # debug, no optimisation
+  set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} --coverage") # enabling coverage
 
-if(TARGET turtlebotFinalTest)
+  find_package(rostest REQUIRED)
+
+  ## Add gtest based cpp test target and link libraries
+  add_rostest_gtest(
+    turtlebotFinalTest
+    test/turtlebotFinalTest.launch
+    test/main.cpp 
+    test/turtlebotTest.cpp 
+    test/camTest.cpp 
+    test/controlMotionTest.cpp 
+    test/detectObjectTest.cpp
+    src/cam.cpp
+    src/controlMotion.cpp
+    src/detectObject.cpp
+    src/turtlebot.cpp
+  )
+
   target_link_libraries(turtlebotFinalTest ${catkin_LIBRARIES} ${OpenCV_LIBS})
   add_dependencies(
-	  turtlebotFinalTest
-	  turtlebotFinal
-	  ${catkin_EXPORTED_TARGETS}
+    turtlebotFinalTest
+    turtlebotFinal
+    ${catkin_EXPORTED_TARGETS}
   )
-endif()
+  endif()
 
 ## Add folders to be run by python nosetests
 # catkin_add_nosetests(test)

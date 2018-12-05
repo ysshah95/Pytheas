@@ -45,9 +45,45 @@
 #include <ros/ros.h>
 #include <gtest/gtest.h>
 #include "controlMotion.hpp"
+
  /**
  * @brief Test that should pass
  */
-TEST(TestSuite, motion_should_pass) {
-  EXPECT_EQ(1, 1);
+TEST(TestSuite, determine_action) {
+  ControlMotion *controlMotion = new ControlMotion(1.0);
+  geometry_msgs::Twist tmpMsg;
+  tmpMsg.linear.x = 0.0;
+  tmpMsg.linear.y = 0.0;
+  tmpMsg.linear.z = 0.0;
+  tmpMsg.angular.x = 0.0;
+  tmpMsg.angular.y = 0.0;
+  tmpMsg.angular.z = 0.0;
+
+  geometry_msgs::Twist msg = controlMotion->getVehicleAction();
+  bool isEqual = false;
+  if(tmpMsg.linear.x == msg.linear.x && tmpMsg.linear.y == msg.linear.y && tmpMsg.linear.z == msg.linear.z &&
+      tmpMsg.angular.x == msg.angular.x && tmpMsg.angular.y == msg.angular.y && tmpMsg.linear.z == msg.angular.z) {
+    isEqual = true;
+  }
+
+  EXPECT_EQ(true, isEqual);
+}
+
+/**
+ * @brief Test the ability to set a new forward speed
+ */
+TEST(TestSuite, set_speed) {
+  ControlMotion *controlMotion = new ControlMotion(1.0);
+  controlMotion->setForwardSpeed(2.0);
+
+  EXPECT_EQ(2.0, controlMotion->getForwardSpeed());
+}
+
+/**
+ * @brief Test the ability to return the current forward speed
+ */
+TEST(TestSuite, get_speed) {
+  ControlMotion *controlMotion = new ControlMotion(1.0);
+
+  EXPECT_EQ(1.0, controlMotion->getForwardSpeed());
 }

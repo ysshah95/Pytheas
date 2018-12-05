@@ -45,9 +45,57 @@
 #include <ros/ros.h>
 #include <gtest/gtest.h>
 #include "detectObject.hpp"
- /**
- * @brief Test that should pass
+
+/**
+ * @brief Test the ability for the obstacle detector to properly detect an obstacle
  */
-TEST(TestSuite, obstacle_should_pass) {
-  EXPECT_EQ(1, 1);
+TEST(TestSuite, detect_obstacle) {
+  DetectObject *detectObject = new DetectObject(1.0);
+
+  // Create dummy laser scan to provide a fake collision:
+  sensor_msgs::LaserScan collideMsg;
+  collideMsg.angle_min = 0;
+  collideMsg.angle_max = 0;
+  collideMsg.angle_increment = 0;
+  collideMsg.time_increment = 0;
+  collideMsg.scan_time = 0;
+  collideMsg.range_min = 0;
+  collideMsg.range_max = 0;
+  collideMsg.ranges.push_back(0);
+  collideMsg.intensities.push_back(0);
+
+  EXPECT_TRUE(detectObject->detectObstacle(collideMsg));
+
+  // Create dummy laser scan to provide a fake non-collision:
+  sensor_msgs::LaserScan freeMsg;
+  freeMsg.angle_min = 0;
+  freeMsg.angle_max = 0;
+  freeMsg.angle_increment = 0;
+  freeMsg.time_increment = 0;
+  freeMsg.scan_time = 0;
+  freeMsg.range_min = 0;
+  freeMsg.range_max = 0;
+  freeMsg.ranges.push_back(2.0);
+  freeMsg.intensities.push_back(0);
+
+  EXPECT_FALSE(detectObject->detectObstacle(freeMsg));
+}
+
+/**
+ * @brief Test the ability to set a new threshold for the obstacle detector
+ */
+TEST(TestSuite, set_threshold) {
+  DetectObject *detectObject = new DetectObject(1.0);
+  detectObject->setDistanceThreshold(2.0);
+
+  EXPECT_EQ(2.0, detectObject->getDistanceThreshold());
+}
+
+/**
+ * @brief Test the ability to get the current threshold for the obstacle detector
+ */
+TEST(TestSuite, get_threshold) {
+  DetectObject *detectObject = new DetectObject(1.0);
+
+  EXPECT_EQ(1.0, detectObject->getDistanceThreshold());
 }
