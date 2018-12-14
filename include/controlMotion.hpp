@@ -47,6 +47,9 @@
 #include <geometry_msgs/Twist.h>
 #include <sensor_msgs/LaserScan.h>
 #include "detectObject.hpp"
+#include <pytheas/changeSpeedService.h>
+#include <pytheas/togglePauseMotion.h>
+#include <pytheas/changeThresholdService.h>
 
 
 /**
@@ -82,8 +85,26 @@ class ControlMotion {
 	 */
 	geometry_msgs::Twist getVehicleAction() {
 		return vehicleAction;
-	}
-	;
+	};
+
+  /**
+   * @brief Response to the change speed service to set forward speed
+   */
+  bool changeSpeed(pytheas::changeSpeedService::Request &req,
+                   pytheas::changeSpeedService::Response &resp);
+
+  /**
+   * @brief Response to the change threshold service to set distance threshold
+   */
+  bool changeThreshold(pytheas::changeThresholdService::Request &req,
+                       pytheas::changeThresholdService::Response &resp);
+
+  /**
+   * @brief Response to the toggle pause motion service
+   */
+  bool togglePause(pytheas::togglePauseMotion::Request &req,
+                   pytheas::togglePauseMotion::Response &resp);
+
 
  private:
   /**
@@ -100,4 +121,19 @@ class ControlMotion {
 	 * @brief Container for Twist message to be sent the vehicle on next "drive" command
 	 */
 	geometry_msgs::Twist vehicleAction;
+
+  /**
+   * @brief Flag to denote if we should pause the robot or continue motion
+   */
+  bool pauseMotion;
+
+  /**
+   * @brief Flag to denote that we have entered a "collision" state and are turning
+   */
+  bool obstaclePresent;
+
+  /**
+   * @brief Counter for how long we have been spinning trying to find a free space
+   */
+  int obstacleCounter;
 };
