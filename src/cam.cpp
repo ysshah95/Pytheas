@@ -53,21 +53,15 @@
 #include <opencv2/highgui/highgui.hpp>
 #include <image_transport/image_transport.h>
 #include "cam.hpp"
- /**
- * @brief Cam constructor
- */
+
 Cam::Cam() :
 	takeImageFlag(false) {
 		// Register client to "takeImage" service
 	cameraClient = nh.serviceClient < pytheas::takeImageService > ("takeImage");
 }
 
-/**
- * @brief Camera topic callback takes a picture if flag has been set
- */
 void Cam::cameraCallback(const sensor_msgs::ImageConstPtr& msg) {
 	if (takeImageFlag) {
-		ROS_INFO_STREAM("Camera...");
  		cv_bridge::CvImagePtr cv_ptr;
 		try {
 			cv_ptr = cv_bridge::toCvCopy(msg, "bgr8");
@@ -82,6 +76,7 @@ void Cam::cameraCallback(const sensor_msgs::ImageConstPtr& msg) {
 		std::ostringstream filename;
 		filename << "turtleBotImage_" << count << ".jpg";
 		cv::imwrite(filename.str(), cv_ptr->image);
+		 ROS_INFO("Saving image %s to ~/.ros/", filename.str().c_str());
  		// Add filename to list of saved images:
 		savedImages.push_back(filename.str());
  		// Reset Flag:
@@ -89,14 +84,14 @@ void Cam::cameraCallback(const sensor_msgs::ImageConstPtr& msg) {
 	}
 }
 
-/**
- * @brief Take an image of the current RGB camera view for later analysis
- */
 bool Cam::takeImage(pytheas::takeImageService::Request &req,
 		pytheas::takeImageService::Response &resp) {
 	resp.resp = true;
- 	ROS_INFO_STREAM("Set flag to [true]");
-	ROS_INFO("Response for client: %s", resp.resp ? "true" : "false");
+ 	ROS_INFO_STREAM("Set flag to [true], save the next available image frame.");
  	takeImageFlag = resp.resp;
  	return true;
+}
+
+std::vector<std::string> Cam::getSavedImageFilenames() {
+    return savedImages;
 }

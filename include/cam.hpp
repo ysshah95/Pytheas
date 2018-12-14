@@ -74,9 +74,7 @@ class Cam {
 	 */
 	void cameraCallback(const sensor_msgs::ImageConstPtr& msg);
 
-  std::vector<std::string> getSavedImageFilenames() {
-    return savedImages;
-  };
+  std::vector<std::string> getSavedImageFilenames();
 
  private:
 
