@@ -46,16 +46,11 @@
 #include <ros/ros.h>
 #include "detectObject.hpp"
 
- /**
- * @brief DetectObject constructor
- */
+
 DetectObject::DetectObject(double threshold)
     : distanceThreshold(threshold) {
 }
 
-/**
- * @brief detect if the vehicle is about to collide with an obstacle or not
- */
 bool DetectObject::detectObstacle(
 		const sensor_msgs::LaserScan msg) {
  	// Check if any scan from the laser is less than 0.75 meters
@@ -67,4 +62,12 @@ bool DetectObject::detectObstacle(
 	}
  	// Return false if we are collision free
 	return false;
+}
+
+double DetectObject::getDistanceThreshold() {
+     return distanceThreshold;
+}
+
+void DetectObject::setDistanceThreshold(double threshold) {
+     distanceThreshold = threshold;
 }

@@ -45,6 +45,7 @@
 #include <stdlib.h>
 #include <ros/ros.h>
 #include <sensor_msgs/LaserScan.h>
+#include <pytheas/changeThresholdService.h>
 
 /**
  * @brief detectObject class handles determining if the turtlebot is going to collide using laser scans
@@ -64,16 +65,12 @@ class DetectObject {
   /**
    * @brief return the current threshold for how close the vehicle should get to an object
    */
-  double getDistanceThreshold() {
-     return distanceThreshold;
-  };
+  double getDistanceThreshold();
 
   /**
    * @brief set the threshold for how close the vehicle should get to an object
    */
-  void setDistanceThreshold(double threshold) {
-     distanceThreshold = threshold;
-  };
+  void setDistanceThreshold(double threshold);
 
 
  private:
