@@ -48,6 +48,9 @@
  /**
  * @brief Test that should pass
  */
-TEST(TestSuite, camera_should_pass) {
-  EXPECT_EQ(1, 1);
+TEST(CameraTest, Initialization_Test) {
+  Cam *cam = new Cam();
+
+  //- Need to test the length of the array, too
+  EXPECT_EQ(0, cam->getSavedImageFilenames().size());
 }
