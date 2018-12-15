@@ -50,8 +50,9 @@
  /**
  * @brief Turtlebot constructor
  */
-Turtlebot::Turtlebot() {
-    controlMotion = new ControlMotion(1.0);
+Turtlebot::Turtlebot()
+		: publishedMessagesCount(0) {
+    controlMotion = new ControlMotion(0.25);
     cam = new Cam();
 
     // Set up subscribers
@@ -61,9 +62,21 @@ Turtlebot::Turtlebot() {
  	laserSub = nh.subscribe < sensor_msgs::LaserScan
 			> ("/scan", 500, &ControlMotion::determineAction, controlMotion);
 
- 	// Register service with the master
-	server = nh.advertiseService("takeImageService", &Cam::takeImage,
-			cam);
+ 	// Register services with the master
+	takeImageServer = nh.advertiseService("takeImageService", &Cam::takeImage,
+											cam);
+
+	changeThresholdServer = nh.advertiseService(
+		"changeThresholdService", &ControlMotion::changeThreshold,
+											controlMotion);
+
+	changeSpeedServer = nh.advertiseService("changeSpeedService",
+											&ControlMotion::changeSpeed,
+											controlMotion);
+
+	togglePauseServer = nh.advertiseService("togglePauseMotionService",
+											&ControlMotion::togglePause,
+											controlMotion);
 	
 	// Set up publisher:
 	drivePub = nh.advertise < geometry_msgs::Twist
@@ -78,4 +91,6 @@ void Turtlebot::drive() {
 	geometry_msgs::Twist vehicleCommand = controlMotion->getVehicleAction();
  	// Publish command:
 	drivePub.publish(vehicleCommand);
+	// Increment published message counter:
+  	publishedMessagesCount++;
 }

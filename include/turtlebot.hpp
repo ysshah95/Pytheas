@@ -58,20 +58,24 @@ class Turtlebot {
   Turtlebot();
 
   /**
-   * @brief drive the vehicle autonomously using laser scan data as sensor feedback
+   * @brief drive the turtlebot autonomously using laser scan data as sensor feedback
    */
   void drive();
+
+  int getPublishedMessagesCount() {
+    return publishedMessagesCount;
+  };
 
  private:
   /**
    * @brief container for the camera object
    */
   Cam *cam;
-   /**
+  /**
    * @brief container for the motion controller object
    */
   ControlMotion *controlMotion;
-   /**
+  /**
    * @brief container for a ROS publisher to publish vehicle motion commands
    */
   ros::Publisher drivePub;
@@ -80,16 +84,36 @@ class Turtlebot {
    * @brief container for a ROS node handler
    */
   ros::NodeHandle nh;
-   /**
+  /**
    * @brief container for a ROS subscriber for camera topics
    */
   ros::Subscriber cameraSub;
-   /**
+  /**
    * @brief container for a ROS subscriber for laser scan topics
    */
   ros::Subscriber laserSub;
-   /**
+  /**
    * @brief Container for service server (for takeImage service)
    */
-  ros::ServiceServer server;
+  ros::ServiceServer takeImageServer;
+
+  /**
+   * @brief Container for service server (for changeSpeed service)
+   */
+  ros::ServiceServer changeSpeedServer;
+
+  /**
+   * @brief Container for service server (for changeThreshold service)
+   */
+  ros::ServiceServer changeThresholdServer;
+
+  /**
+   * @brief Container for service server (for togglePause service)
+   */
+  ros::ServiceServer togglePauseServer;
+
+  /**
+   * @brief Container for a counter of how many messages have been published
+   */
+  int publishedMessagesCount;
 };
