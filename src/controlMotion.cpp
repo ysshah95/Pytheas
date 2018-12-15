@@ -168,3 +168,15 @@ bool ControlMotion::togglePause(
 
   return resp.resp;
 }
+
+void ControlMotion::setForwardSpeed(double speed) {
+    forwardSpeed = speed;
+}
+
+double ControlMotion::getForwardSpeed() {
+    return forwardSpeed;
+}
+
+geometry_msgs::Twist ControlMotion::getVehicleAction() {
+		return vehicleAction;
+}

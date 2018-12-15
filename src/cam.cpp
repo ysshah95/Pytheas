@@ -43,6 +43,7 @@
  */
 
 #include <sstream>
+#include <vector>
 #include <string>
 #include <stdlib.h>
 #include <ros/ros.h>
@@ -76,7 +77,7 @@ void Cam::cameraCallback(const sensor_msgs::ImageConstPtr& msg) {
 		std::ostringstream filename;
 		filename << "turtleBotImage_" << count << ".jpg";
 		cv::imwrite(filename.str(), cv_ptr->image);
-		 ROS_INFO("Saving image %s to ~/.ros/", filename.str().c_str());
+		ROS_INFO("Saving image %s to ~/.ros/", filename.str().c_str());
  		// Add filename to list of saved images:
 		savedImages.push_back(filename.str());
  		// Reset Flag:

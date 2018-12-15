@@ -70,22 +70,17 @@ class ControlMotion {
    /**
    * @brief change the forward speed of the robot
    */
-  void setForwardSpeed(double speed) {
-    forwardSpeed = speed;
-  };
+  void setForwardSpeed(double speed);
+
    /**
    * @brief return the current forward speed of the robot
    */
-  double getForwardSpeed() {
-    return forwardSpeed;
-  };
+  double getForwardSpeed();
 
 	/**
 	 * @brief return the current vehicle action
 	 */
-	geometry_msgs::Twist getVehicleAction() {
-		return vehicleAction;
-	};
+	geometry_msgs::Twist getVehicleAction();
 
   /**
    * @brief Response to the change speed service to set forward speed
