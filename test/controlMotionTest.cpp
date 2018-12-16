@@ -44,13 +44,16 @@
 
 #include <ros/ros.h>
 #include <gtest/gtest.h>
+#include <memory>
+#include "geometry_msgs/Twist.h"
 #include "controlMotion.hpp"
 
  /**
  * @brief Test that should pass
  */
-TEST(TestSuite, determine_action) {
-  ControlMotion *controlMotion = new ControlMotion(1.0);
+TEST(ControlMotionTest, determine_action) {
+  std::shared_ptr<ControlMotion> controlMotion{nullptr};
+  controlMotion = std::make_shared<ControlMotion>(1.0);
   geometry_msgs::Twist tmpMsg;
   tmpMsg.linear.x = 0.0;
   tmpMsg.linear.y = 0.0;
@@ -72,8 +75,9 @@ TEST(TestSuite, determine_action) {
 /**
  * @brief Test the ability to set a new forward speed
  */
-TEST(TestSuite, set_speed) {
-  ControlMotion *controlMotion = new ControlMotion(1.0);
+TEST(ControlMotionTest, set_speed) {
+  std::shared_ptr<ControlMotion> controlMotion{nullptr};
+  controlMotion = std::make_shared<ControlMotion>(1.0);;
   controlMotion->setForwardSpeed(2.0);
 
   EXPECT_EQ(2.0, controlMotion->getForwardSpeed());
@@ -82,8 +86,9 @@ TEST(TestSuite, set_speed) {
 /**
  * @brief Test the ability to return the current forward speed
  */
-TEST(TestSuite, get_speed) {
-  ControlMotion *controlMotion = new ControlMotion(1.0);
+TEST(ControlMotionTest, get_speed) {
+  std::shared_ptr<ControlMotion> controlMotion{nullptr};
+  controlMotion = std::make_shared<ControlMotion>(1.0);
 
   EXPECT_EQ(1.0, controlMotion->getForwardSpeed());
 }
