@@ -49,8 +49,9 @@
 /**
  * @brief Test the ability for the obstacle detector to properly detect an obstacle
  */
-TEST(TestSuite, detect_obstacle) {
-  DetectObject *detectObject = new DetectObject(1.0);
+TEST(ObjectDetectTestSuite, detect_obstacle) {
+  std::shared_ptr<DetectObject> detectObject{nullptr};
+  detectObject = std::make_shared<DetectObject>(1.0);
 
   // Create dummy laser scan to provide a fake collision:
   sensor_msgs::LaserScan collideMsg;
@@ -84,8 +85,9 @@ TEST(TestSuite, detect_obstacle) {
 /**
  * @brief Test the ability to set a new threshold for the obstacle detector
  */
-TEST(TestSuite, set_threshold) {
-  DetectObject *detectObject = new DetectObject(1.0);
+TEST(ObjectDetectTestSuite, set_threshold) {
+  std::shared_ptr<DetectObject> detectObject{nullptr};
+  detectObject = std::make_shared<DetectObject>(1.0);
   detectObject->setDistanceThreshold(2.0);
 
   EXPECT_EQ(2.0, detectObject->getDistanceThreshold());
@@ -94,8 +96,9 @@ TEST(TestSuite, set_threshold) {
 /**
  * @brief Test the ability to get the current threshold for the obstacle detector
  */
-TEST(TestSuite, get_threshold) {
-  DetectObject *detectObject = new DetectObject(1.0);
+TEST(ObjectDetectTestSuite, get_threshold) {
+  std::shared_ptr<DetectObject> detectObject{nullptr};
+  detectObject = std::make_shared<DetectObject>(1.0);
 
   EXPECT_EQ(1.0, detectObject->getDistanceThreshold());
 }
