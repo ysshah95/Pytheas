@@ -47,30 +47,29 @@
 #include "turtlebot.hpp"
 
 int main(int argc, char **argv) {
-  // Initialize ROS and name our node "enpm808_final"
-  ros::init(argc, argv, "FinalProject");
+    // Initialize ROS and name our node "enpm808_final"
+    ros::init(argc, argv, "FinalProject");
 
-   // Handle for the process node. Will handle initialization and
-  //   cleanup of the node
-  ros::NodeHandle n;
+    // Handle for the process node. Will handle initialization and
+    //   cleanup of the node
+    ros::NodeHandle n;
 
-   // Set up the publisher rate to 10 Hz
-  ros::Rate loop_rate(10);
+    // Set up the publisher rate to 10 Hz
+    ros::Rate loop_rate(10);
 
-  // Turtlebot container
-	std::shared_ptr<Turtlebot> turtlebot{nullptr};
-  turtlebot = std::make_shared<Turtlebot>();
+    // Turtlebot container
+    std::shared_ptr<Turtlebot> turtlebot{nullptr};
+    turtlebot = std::make_shared<Turtlebot>();
 
-  while (ros::ok()) {
-
+    while (ros::ok()) {
     turtlebot->drive();
 
     // "Spin" a callback in case we set up any callbacks
     ros::spinOnce();
 
-     // Sleep for the remaining time until we hit our 10 Hz rate
+        // Sleep for the remaining time until we hit our 10 Hz rate
     loop_rate.sleep();
-  }
+    }
 
-   return 0;
+    return 0;
 }

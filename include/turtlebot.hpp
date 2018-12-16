@@ -47,9 +47,10 @@
 
 #include <stdlib.h>
 #include <ros/ros.h>
+#include <memory>
 #include "controlMotion.hpp"
 #include "cam.hpp"
-#include <memory>
+
 
 /**
  * @brief Turtlebot class handles the camera and motion controller interactions for turtlebot

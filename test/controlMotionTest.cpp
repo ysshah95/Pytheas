@@ -64,8 +64,10 @@ TEST(ControlMotionTest, determine_action) {
 
   geometry_msgs::Twist msg = controlMotion->getVehicleAction();
   bool isEqual = false;
-  if(tmpMsg.linear.x == msg.linear.x && tmpMsg.linear.y == msg.linear.y && tmpMsg.linear.z == msg.linear.z &&
-      tmpMsg.angular.x == msg.angular.x && tmpMsg.angular.y == msg.angular.y && tmpMsg.linear.z == msg.angular.z) {
+  if (tmpMsg.linear.x == msg.linear.x && tmpMsg.linear.y == msg.linear.y &&
+    tmpMsg.linear.z == msg.linear.z &&
+    tmpMsg.angular.x == msg.angular.x && tmpMsg.angular.y == msg.angular.y &&
+    tmpMsg.linear.z == msg.angular.z) {
     isEqual = true;
   }
 

@@ -51,49 +51,49 @@
  * @brief Turtlebot constructor
  */
 Turtlebot::Turtlebot()
-		: publishedMessagesCount(0) {
-	
+        : publishedMessagesCount(0) {
     controlMotion = std::make_shared<ControlMotion>(0.25);
-	cam = std::make_shared<Cam>();
+    cam = std::make_shared<Cam>();
 
     // Set up subscribers
-	cameraSub = nh.subscribe < sensor_msgs::Image
-			> ("/camera/rgb/image_raw", 500, &Cam::cameraCallback, cam.get());
+    cameraSub = nh.subscribe < sensor_msgs::Image
+            > ("/camera/rgb/image_raw", 500, &Cam::cameraCallback, cam.get());
 
- 	laserSub = nh.subscribe < sensor_msgs::LaserScan
-			> ("/scan", 500, &ControlMotion::determineAction, controlMotion.get());
+    laserSub = nh.subscribe < sensor_msgs::LaserScan
+            > ("/scan", 500, &ControlMotion::determineAction,
+            controlMotion.get());
 
- 	// Register services with the master
-	takeImageServer = nh.advertiseService("takeImageService", &Cam::takeImage,
-											cam.get());
+    // Register services with the master
+    takeImageServer = nh.advertiseService("takeImageService", &Cam::takeImage,
+                                            cam.get());
 
-	changeThresholdServer = nh.advertiseService(
-		"changeThresholdService", &ControlMotion::changeThreshold,
-											controlMotion.get());
+    changeThresholdServer = nh.advertiseService(
+        "changeThresholdService", &ControlMotion::changeThreshold,
+                                            controlMotion.get());
 
-	changeSpeedServer = nh.advertiseService("changeSpeedService",
-											&ControlMotion::changeSpeed,
-											controlMotion.get());
+    changeSpeedServer = nh.advertiseService("changeSpeedService",
+                                            &ControlMotion::changeSpeed,
+                                            controlMotion.get());
 
-	togglePauseServer = nh.advertiseService("togglePauseMotionService",
-											&ControlMotion::togglePause,
-											controlMotion.get());
-	
-	// Set up publisher:
-	drivePub = nh.advertise < geometry_msgs::Twist
-			> ("/mobile_base/commands/velocity", 1000);
+    togglePauseServer = nh.advertiseService("togglePauseMotionService",
+                                            &ControlMotion::togglePause,
+                                            controlMotion.get());
+
+    // Set up publisher:
+    drivePub = nh.advertise < geometry_msgs::Twist
+            > ("/mobile_base/commands/velocity", 1000);
 }
 
 /**
  * @brief drive the turtlebot autonomously using laser scan data as sensor feedback
  */
 void Turtlebot::drive() {
-	// Grab current vehicle action:
-	geometry_msgs::Twist vehicleCommand = controlMotion->getVehicleAction();
- 	// Publish command:
-	drivePub.publish(vehicleCommand);
-	// Increment published message counter:
-  	publishedMessagesCount++;
+    // Grab current vehicle action:
+    geometry_msgs::Twist vehicleCommand = controlMotion->getVehicleAction();
+    // Publish command:
+    drivePub.publish(vehicleCommand);
+    // Increment published message counter:
+    publishedMessagesCount++;
 }
 
 int Turtlebot::getPublishedMessagesCount() {

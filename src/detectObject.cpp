@@ -52,16 +52,16 @@ DetectObject::DetectObject(double threshold)
 }
 
 bool DetectObject::detectObstacle(
-		const sensor_msgs::LaserScan msg) {
- 	// Check if any scan from the laser is less than 0.75 meters
-	//  from the front of the robot. If so, a collision is about to occur
-	for (auto i : msg.ranges) {
-		if (i < distanceThreshold) {
-			return true;
-		}
-	}
- 	// Return false if we are collision free
-	return false;
+        const sensor_msgs::LaserScan msg) {
+    // Check if any scan from the laser is less than 0.75 meters
+    //  from the front of the robot. If so, a collision is about to occur
+    for (auto i : msg.ranges) {
+        if (i < distanceThreshold) {
+            return true;
+        }
+    }
+    // Return false if we are collision free
+    return false;
 }
 
 double DetectObject::getDistanceThreshold() {

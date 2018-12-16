@@ -49,10 +49,11 @@
 #include <ros/ros.h>
 #include <geometry_msgs/Twist.h>
 #include <sensor_msgs/LaserScan.h>
-#include "detectObject.hpp"
 #include <pytheas/changeSpeedService.h>
 #include <pytheas/togglePauseMotion.h>
 #include <pytheas/changeThresholdService.h>
+#include "detectObject.hpp"
+
 
 
 /**
@@ -63,7 +64,7 @@ class ControlMotion {
   /**
    * @brief ControlMotion constructor
    */
-  ControlMotion(double forwardSpeed);
+  explicit ControlMotion(double forwardSpeed);
 
    /**
    * @brief Determine a turtlebot action based on results from the obstacle detector
@@ -83,7 +84,7 @@ class ControlMotion {
 	/**
 	 * @brief return the current vehicle action
 	 */
-	geometry_msgs::Twist getVehicleAction();
+  geometry_msgs::Twist getVehicleAction();
 
   /**
    * @brief Response to the change speed service to set forward speed
@@ -118,7 +119,7 @@ class ControlMotion {
   /**
 	 * @brief Container for Twist message to be sent the vehicle on next "drive" command
 	 */
-	geometry_msgs::Twist vehicleAction;
+  geometry_msgs::Twist vehicleAction;
 
   /**
    * @brief Flag to denote if we should pause the robot or continue motion

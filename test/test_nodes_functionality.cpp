@@ -51,8 +51,6 @@
 #include "cam.hpp"
 #include "testSetUp.hpp"
 
-
-
 /**
  * @brief To test determine action function of MotionController class in a situation when there is no obstacle
  * @param none
@@ -63,9 +61,10 @@ TEST(CallbackFunctionTesting, doesNotCollideTest) {
   TestSetUp test;
   ros::Rate loop_rate(2);
   // register to check number of publishers to /mobile_base/commands/velocity
-  ros::Subscriber velocity = nh.subscribe("/mobile_base/commands/velocity", 1000, &TestSetUp::velocityCallback, &test);
+  ros::Subscriber velocity = nh.subscribe("/mobile_base/commands/velocity",
+    1000, &TestSetUp::velocityCallback, &test);
   // register to check number of Subscribers to /scan
-  ros::Publisher laserPub = nh.advertise<sensor_msgs::LaserScan>("/scan",100);
+  ros::Publisher laserPub = nh.advertise<sensor_msgs::LaserScan>("/scan", 100);
   loop_rate.sleep();
   ASSERT_EQ(1, velocity.getNumPublishers());
   ASSERT_EQ(1, laserPub.getNumSubscribers());
@@ -94,16 +93,18 @@ TEST(CallbackFunctionTesting, doesNotCollideTest) {
   for (auto& i : scan.ranges) {
     i = scan.range_max;
   }
-  
+
   laserPub.publish(scan);
   loop_rate.sleep();
   ros::spinOnce();
   // confirm velocity is expected
-  EXPECT_EQ(0, std::memcmp(&msg, &test.twist, sizeof(msg))) << test.twist.linear.x;
+  EXPECT_EQ(0, std::memcmp(&msg, &test.twist, sizeof(msg))) <<
+    test.twist.linear.x;
 }
 
 /**
- * @brief To test determine action function of MotionController class in a situation when there is an obstacle
+ * @brief To test determine action function of MotionController class
+ * in a situation when there is an obstacle
  * @param none
  * @return none
  */
@@ -112,9 +113,10 @@ TEST(TestingCallbacks, collisionTest) {
   TestSetUp test;
   ros::Rate loop_rate(2);
   // register to check number of publishers to /mobile_base/commands/velocity
-  ros::Subscriber velocity = nh.subscribe("/mobile_base/commands/velocity", 1000, &TestSetUp::velocityCallback, &test);
+  ros::Subscriber velocity = nh.subscribe("/mobile_base/commands/velocity",
+    1000, &TestSetUp::velocityCallback, &test);
   // register to check number of Subscribers to /scan
-  ros::Publisher laserPub = nh.advertise<sensor_msgs::LaserScan>("/scan",100);
+  ros::Publisher laserPub = nh.advertise<sensor_msgs::LaserScan>("/scan", 100);
   loop_rate.sleep();
   ASSERT_EQ(1, velocity.getNumPublishers());
   ASSERT_EQ(1, laserPub.getNumSubscribers());
@@ -143,12 +145,13 @@ TEST(TestingCallbacks, collisionTest) {
   for (auto& i : scan.ranges) {
     i = scan.range_max;
   }
-  
+
   laserPub.publish(scan);
   loop_rate.sleep();
   ros::spinOnce();
   // confirm velocity is expected
-  EXPECT_EQ(0, std::memcmp(&msg, &test.twist, sizeof(msg))) << test.twist.angular.z;
+  EXPECT_EQ(0, std::memcmp(&msg, &test.twist, sizeof(msg))) <<
+    test.twist.angular.z;
 }
 
 /**
@@ -161,9 +164,9 @@ TEST(CallbackFunctionTesting, velocity_callback) {
   TestSetUp test;
   ros::Rate loop_rate(2);
   // register to check number of Subscribers to /scan
-  ros::Subscriber velocity = nh.subscribe("/mobile_base/commands/velocity", 1000,
-    &TestSetUp::velocityCallback, &test);
-  loop_rate.sleep();  
+  ros::Subscriber velocity = nh.subscribe("/mobile_base/commands/velocity",
+    1000, &TestSetUp::velocityCallback, &test);
+  loop_rate.sleep();
   EXPECT_EQ(1, velocity.getNumPublishers());
 }
 
@@ -176,7 +179,8 @@ TEST(CallbackFunctionTesting, camClass_callback) {
   ros::NodeHandle nh;
   ros::Rate loop_rate(2);
   // register to check number of Subscribers to /camera/rgb/image_raw
-  ros::Publisher cameraPub = nh.advertise<sensor_msgs::Image>("/camera/rgb/image_raw",100);
+  ros::Publisher cameraPub = nh.advertise<sensor_msgs::Image>
+    ("/camera/rgb/image_raw", 100);
   loop_rate.sleep();
   EXPECT_EQ(1, cameraPub.getNumSubscribers());
 }
@@ -190,8 +194,8 @@ TEST(CallbackFunctionTesting, laserData_callback) {
   ros::NodeHandle nh;
   ros::Rate loop_rate(2);
   // register to check number of Subscribers to /scan
-  ros::Publisher laserPub = nh.advertise<sensor_msgs::LaserScan>("/scan",100);
-  loop_rate.sleep();  
+  ros::Publisher laserPub = nh.advertise<sensor_msgs::LaserScan>("/scan", 100);
+  loop_rate.sleep();
   EXPECT_EQ(1, laserPub.getNumSubscribers());
 }
 
@@ -205,7 +209,8 @@ TEST(TestingCallbacks, camera_callback) {
   ros::NodeHandle nh;
   ros::Rate loop_rate(2);
   // register to check number of Subscribers to /camera/rgb/image_raw
-  ros::Publisher cameraPub = nh.advertise<sensor_msgs::Image>("/camera/rgb/image_raw",100);
+  ros::Publisher cameraPub = nh.advertise<sensor_msgs::Image>
+    ("/camera/rgb/image_raw", 100);
   loop_rate.sleep();
   EXPECT_EQ(1, cameraPub.getNumSubscribers());
 }
@@ -221,4 +226,4 @@ int main(int argc, char** argv) {
   ros::init(argc, argv, "test_nodes_functionality");
   ::testing::InitGoogleTest(&argc, argv);
   return RUN_ALL_TESTS();;
-} 
+}

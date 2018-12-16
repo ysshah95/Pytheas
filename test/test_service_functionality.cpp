@@ -44,6 +44,10 @@
 #include <gtest/gtest.h>
 
 // Including ros header file
+#include <pytheas/changeSpeedService.h>
+#include <pytheas/togglePauseMotion.h>
+#include <pytheas/changeThresholdService.h>
+#include <pytheas/takeImageService.h>
 #include "ros/ros.h"
 #include "ros/service_client.h"
 #include "sensor_msgs/LaserScan.h"
@@ -51,19 +55,16 @@
 #include "turtlebot.hpp"
 #include "controlMotion.hpp"
 #include "cam.hpp"
-#include <pytheas/changeSpeedService.h>
-#include <pytheas/togglePauseMotion.h>
-#include <pytheas/changeThresholdService.h>
-#include <pytheas/takeImageService.h>
+
 
 /**
  * @brief Testing the changeThresholdService
  */
-TEST(test_Services, change_threshold_service) {  
+TEST(test_Services, change_threshold_service) {
   ros::NodeHandle nh;
   ros::ServiceClient client =
     nh.serviceClient<pytheas::changeThresholdService>("changeThresholdService");
-  bool exists(client.waitForExistence(ros::Duration(2))); 
+  bool exists(client.waitForExistence(ros::Duration(2)));
   ASSERT_TRUE(exists);
   pytheas::changeThresholdService srv;
   srv.request.threshold = 1.5;
@@ -96,13 +97,14 @@ TEST(test_Services, control_motion_service) {
   bool exists(client.waitForExistence(ros::Duration(2)));
   ASSERT_TRUE(exists);
   pytheas::togglePauseMotion srv;
-  srv.request.pause = false; // Continue Motion
+  // Continue Motion
+  srv.request.pause = false;
   client.call(srv);
   EXPECT_TRUE(srv.response.resp);
-
-  srv.request.pause = true; // Stop Motion
+  // Stop Motion
+  srv.request.pause = true;
   client.call(srv);
-  EXPECT_TRUE(srv.response.resp); 
+  EXPECT_TRUE(srv.response.resp);
 }
 
 /**
@@ -120,8 +122,6 @@ TEST(test_Services, take_image_service) {
   EXPECT_TRUE(srv.response.resp);
 }
 
-
-
 /**
  * @brief Main function for testing, runs all the tests that were declared
  *        with TEST()
@@ -129,11 +129,10 @@ TEST(test_Services, take_image_service) {
  * @param argv  The argv as char array
  * @return 0, if everything is successful
  */
-int main(int argc, char** argv){
+int main(int argc, char** argv) {
   ros::init(argc, argv, "test_services");
   ::testing::InitGoogleTest(&argc, argv);
   auto res = RUN_ALL_TESTS();
   ros::shutdown();
   return res;
 }
-

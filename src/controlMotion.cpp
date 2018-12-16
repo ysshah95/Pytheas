@@ -46,7 +46,7 @@
 #include <ros/ros.h>
 #include <geometry_msgs/Twist.h>
 #include "controlMotion.hpp"
- 
+
 ControlMotion::ControlMotion(double forwardSpeed)
     : forwardSpeed(forwardSpeed),
       pauseMotion(false),
@@ -84,7 +84,7 @@ void ControlMotion::determineAction(
         //   warn the operator
         if (obstaclePresent == false) {
             ROS_WARN(
-                "Obstacle detected <%f m away. Stop and turn until we are free.",
+                "Obstacle detected <%f m away. Stop and turn.",
                 detectObject->getDistanceThreshold());
         }
 
@@ -127,12 +127,12 @@ bool ControlMotion::changeSpeed(
     pytheas::changeSpeedService::Request &req,
     pytheas::changeSpeedService::Response &resp) {
   // Set forward speed to desired speed:
-  setForwardSpeed(req.speed);
-  resp.resp = true;
+    setForwardSpeed(req.speed);
+    resp.resp = true;
 
-  ROS_INFO("Set forward speed to: %f", req.speed);
+    ROS_INFO("Set forward speed to: %f", req.speed);
 
-  return resp.resp;
+    return resp.resp;
 }
 
 /**
@@ -141,13 +141,13 @@ bool ControlMotion::changeSpeed(
 bool ControlMotion::changeThreshold(
     pytheas::changeThresholdService::Request &req,
     pytheas::changeThresholdService::Response &resp) {
-  // Set distance threshold to desired threshold:
-  detectObject->setDistanceThreshold(req.threshold);
-  resp.resp = true;
+    // Set distance threshold to desired threshold:
+    detectObject->setDistanceThreshold(req.threshold);
+    resp.resp = true;
 
-  ROS_INFO("Set detection threshold: %f", req.threshold);
+    ROS_INFO("Set detection threshold: %f", req.threshold);
 
-  return resp.resp;
+    return resp.resp;
 }
 
 /**
@@ -156,17 +156,17 @@ bool ControlMotion::changeThreshold(
 bool ControlMotion::togglePause(
     pytheas::togglePauseMotion::Request &req,
     pytheas::togglePauseMotion::Response &resp) {
-  // Toggle pause motion flag:
-  pauseMotion = req.pause;
-  resp.resp = true;
+    // Toggle pause motion flag:
+    pauseMotion = req.pause;
+    resp.resp = true;
 
-  if (pauseMotion) {
-    ROS_INFO_STREAM("Pause vehicle motion.");
-  } else {
-    ROS_INFO_STREAM("Continue vehicle motion.");
-  }
+    if (pauseMotion) {
+        ROS_INFO_STREAM("Pause vehicle motion.");
+    } else {
+        ROS_INFO_STREAM("Continue vehicle motion.");
+    }
 
-  return resp.resp;
+    return resp.resp;
 }
 
 void ControlMotion::setForwardSpeed(double speed) {
@@ -178,5 +178,5 @@ double ControlMotion::getForwardSpeed() {
 }
 
 geometry_msgs::Twist ControlMotion::getVehicleAction() {
-		return vehicleAction;
+    return vehicleAction;
 }

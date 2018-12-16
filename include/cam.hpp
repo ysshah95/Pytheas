@@ -45,13 +45,14 @@
 #ifndef INCLUDE_CAM_HPP_
 #define INCLUDE_CAM_HPP_
 
-
-#include <string>
-#include <vector>
 #include <stdlib.h>
 #include <ros/ros.h>
 #include <sensor_msgs/Image.h>
 #include <pytheas/takeImageService.h>
+
+#include <string>
+#include <vector>
+
 
 
 
@@ -70,18 +71,16 @@ class Cam {
    * @brief Take an image of the current RGB camera view for later analysis
    */
   bool takeImage(pytheas::takeImageService::Request &req,
-			pytheas::takeImageService::Response &resp);
+    pytheas::takeImageService::Response &resp);
 
-  
   /**
 	 * @brief Camera topic callback takes a picture if flag has been set
 	 */
-	void cameraCallback(const sensor_msgs::ImageConstPtr& msg);
+  void cameraCallback(const sensor_msgs::ImageConstPtr& msg);
 
   std::vector<std::string> getSavedImageFilenames();
 
  private:
-
   /**
    * @brief container for the filenames of each saved image
    */

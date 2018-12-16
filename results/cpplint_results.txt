@@ -1,0 +1,27 @@
+./include/cam.hpp:73:  Is this a non-const reference? If so, make const or use a pointer: pytheas::takeImageService::Request &req  [runtime/references] [2]
+./include/cam.hpp:74:  Is this a non-const reference? If so, make const or use a pointer: pytheas::takeImageService::Response &resp  [runtime/references] [2]
+Done processing ./include/cam.hpp
+Done processing ./include/detectObject.hpp
+./include/controlMotion.hpp:92:  Is this a non-const reference? If so, make const or use a pointer: pytheas::changeSpeedService::Request &req  [runtime/references] [2]
+./include/controlMotion.hpp:93:  Is this a non-const reference? If so, make const or use a pointer: pytheas::changeSpeedService::Response &resp  [runtime/references] [2]
+./include/controlMotion.hpp:98:  Is this a non-const reference? If so, make const or use a pointer: pytheas::changeThresholdService::Request &req  [runtime/references] [2]
+./include/controlMotion.hpp:99:  Is this a non-const reference? If so, make const or use a pointer: pytheas::changeThresholdService::Response &resp  [runtime/references] [2]
+./include/controlMotion.hpp:104:  Is this a non-const reference? If so, make const or use a pointer: pytheas::togglePauseMotion::Request &req  [runtime/references] [2]
+./include/controlMotion.hpp:105:  Is this a non-const reference? If so, make const or use a pointer: pytheas::togglePauseMotion::Response &resp  [runtime/references] [2]
+Done processing ./include/controlMotion.hpp
+Done processing ./include/turtlebot.hpp
+Done processing ./test/test_nodes_functionality.cpp
+Done processing ./test/testSetUp.cpp
+Done processing ./test/test_service_functionality.cpp
+Done processing ./test/camTest.cpp
+Done processing ./test/main.cpp
+Done processing ./test/turtlebotTest.cpp
+Done processing ./test/controlMotionTest.cpp
+Done processing ./test/detectObjectTest.cpp
+Done processing ./test/testSetUp.hpp
+Done processing ./src/controlMotion.cpp
+Done processing ./src/turtlebot.cpp
+Done processing ./src/main.cpp
+Done processing ./src/detectObject.cpp
+Done processing ./src/cam.cpp
+Total errors found: 8

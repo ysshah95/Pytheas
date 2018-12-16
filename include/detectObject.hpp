@@ -58,7 +58,7 @@ class DetectObject {
   /**
    * @brief ObstacleDetection constructor
    */
-  DetectObject(double threshold);
+  explicit DetectObject(double threshold);
 
   /**
    * @brief Callback function for the laser scan. Detects if the vehicle is about to collide with an obstacle or not
@@ -80,12 +80,12 @@ class DetectObject {
   /**
    * @brief container for a ROS node handler
    */
-   ros::NodeHandle nh;
+  ros::NodeHandle nh;
 
   /**
    * @brief container for a ROS subscriber for the laser scan data
    */
-   ros::Subscriber laserSub;
+  ros::Subscriber laserSub;
 
   /**
    * @brief container for the threshold for how close the vehicle should get to an object

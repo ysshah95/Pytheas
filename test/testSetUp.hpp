@@ -43,19 +43,19 @@
  * @copyright BSD 3-Clause License
  */
 
-#ifndef TESTS_TESTSETUP_HPP_
-#define TESTS_TESTSETUP_HPP_
+#ifndef TEST_TESTSETUP_HPP_
+#define TEST_TESTSETUP_HPP_
 
 #include "ros/ros.h"
 #include "geometry_msgs/Twist.h"
 
 class TestSetUp {
-public:
+ public:
   /**
    * @brief TestSetUp class constructor
    */
   TestSetUp();
-  
+
   /**
    * @brief TestSetUp class destructor
    */
@@ -70,4 +70,4 @@ public:
   geometry_msgs::Twist twist;
 };
 
-#endif  // TESTS_TESTSETUP_HPP_
+#endif  // TEST_TESTSETUP_HPP_
