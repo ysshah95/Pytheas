@@ -42,20 +42,22 @@
  * @copyright BSD 3-Clause License
  */
 
+// including C++, ROS and service Header files
 #include <stdlib.h>
 #include <ros/ros.h>
 #include <cv_bridge/cv_bridge.h>
 #include <sensor_msgs/image_encodings.h>
 #include <image_transport/image_transport.h>
-
 #include <sstream>
 #include <vector>
 #include <string>
 
+// including the headers for OpenCV's image processing and GUI modules
 #include <opencv2/imgproc/imgproc.hpp>
 #include <opencv2/core/core.hpp>
 #include <opencv2/highgui/highgui.hpp>
 
+// including user-defined header file
 #include "cam.hpp"
 
 Cam::Cam() :

@@ -42,6 +42,7 @@
  * @copyright BSD 3-Clause License
  */
 
+// Including ROS, C++ and user defined header files
 #include <ros/ros.h>
 #include <gtest/gtest.h>
 #include <memory>
@@ -49,7 +50,7 @@
 #include "controlMotion.hpp"
 
  /**
- * @brief Test that should pass
+ * @brief ControlMotion class Test that tests ability of getVehicleAction
  */
 TEST(ControlMotionTest, determine_action) {
   std::shared_ptr<ControlMotion> controlMotion{nullptr};

@@ -45,36 +45,47 @@
 #ifndef INCLUDE_DETECTOBJECT_HPP_
 #define INCLUDE_DETECTOBJECT_HPP_
 
+// Include c++, ROS and service header files
 #include <stdlib.h>
 #include <ros/ros.h>
 #include <sensor_msgs/LaserScan.h>
 #include <pytheas/changeThresholdService.h>
 
 /**
- * @brief detectObject class handles determining if the turtlebot is going to collide using laser scans
+ * @brief detectObject class handles determining if the turtlebot is
+ *        going to collide using laser scans
  */
 class DetectObject {
  public:
   /**
    * @brief ObstacleDetection constructor
+   * @param threshold of type double
+   * @return none
    */
   explicit DetectObject(double threshold);
 
   /**
-   * @brief Callback function for the laser scan. Detects if the vehicle is about to collide with an obstacle or not
+   * @brief Callback function for the laser scan.
+   *        Detects if the vehicle is about to collide with an obstacle or not
+   * @param Reference to a variable of type sensor_msgs::LaserScan
+   * @return boolean value if the obstacle is detected or not
    */
   bool detectObstacle(const sensor_msgs::LaserScan msg);
 
   /**
-   * @brief return the current threshold for how close the vehicle should get to an object
+   * @brief return the current threshold for how close the vehicle
+   *        should get to an object
+   * @param none
+   * @return threshold of type double
    */
   double getDistanceThreshold();
 
   /**
    * @brief set the threshold for how close the vehicle should get to an object
+   * @param threshold of type double
+   * @return none
    */
   void setDistanceThreshold(double threshold);
-
 
  private:
   /**

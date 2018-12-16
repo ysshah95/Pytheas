@@ -46,6 +46,7 @@
 #ifndef TEST_TESTSETUP_HPP_
 #define TEST_TESTSETUP_HPP_
 
+// Including C++, ROS header files
 #include "ros/ros.h"
 #include "geometry_msgs/Twist.h"
 
@@ -53,20 +54,28 @@ class TestSetUp {
  public:
   /**
    * @brief TestSetUp class constructor
+   * @param none
+   * @return none
    */
   TestSetUp();
 
   /**
    * @brief TestSetUp class destructor
+   * @param none
+   * @return none
    */
   ~TestSetUp();
 
   /**
    * @brief Callback function for velocity messages
+   * @param msg of type geometry_msgs::Twist
+   * @return none
    */
   void velocityCallback(const geometry_msgs::Twist::ConstPtr& msg);
 
-  // command velocity
+  /**
+   * @brief command velocity variable definition
+   */
   geometry_msgs::Twist twist;
 };
 

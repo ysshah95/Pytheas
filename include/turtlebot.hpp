@@ -45,12 +45,13 @@
 #ifndef INCLUDE_TURTLEBOT_HPP_
 #define INCLUDE_TURTLEBOT_HPP_
 
+// Including ROS and C++ Header files
 #include <stdlib.h>
 #include <ros/ros.h>
 #include <memory>
+// Including User defined header files
 #include "controlMotion.hpp"
 #include "cam.hpp"
-
 
 /**
  * @brief Turtlebot class handles the camera and motion controller interactions for turtlebot
@@ -59,14 +60,23 @@ class Turtlebot {
  public:
   /**
    * @brief Turtlebot constructor
+   * @param none
+   * @return none
    */
   Turtlebot();
 
   /**
    * @brief drive the turtlebot autonomously using laser scan data as sensor feedback
+   * @param none 
+   * @return none
    */
   void drive();
 
+  /**
+   * @brief Count the number of published messages
+   * @param none
+   * @return count of type int
+   */
   int getPublishedMessagesCount();
 
  private:
@@ -82,7 +92,6 @@ class Turtlebot {
    * @brief container for a ROS publisher to publish vehicle motion commands
    */
   ros::Publisher drivePub;
-
   /**
    * @brief container for a ROS node handler
    */
@@ -99,22 +108,18 @@ class Turtlebot {
    * @brief Container for service server (for takeImage service)
    */
   ros::ServiceServer takeImageServer;
-
   /**
    * @brief Container for service server (for changeSpeed service)
    */
   ros::ServiceServer changeSpeedServer;
-
   /**
    * @brief Container for service server (for changeThreshold service)
    */
   ros::ServiceServer changeThresholdServer;
-
   /**
    * @brief Container for service server (for togglePause service)
    */
   ros::ServiceServer togglePauseServer;
-
   /**
    * @brief Container for a counter of how many messages have been published
    */

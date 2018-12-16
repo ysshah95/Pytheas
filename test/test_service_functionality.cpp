@@ -40,10 +40,8 @@
  * @copyright BSD 3-Clause License
  */
 
-// Including gtest header file
+// Including C++, ROS and user defined header files
 #include <gtest/gtest.h>
-
-// Including ros header file
 #include <pytheas/changeSpeedService.h>
 #include <pytheas/togglePauseMotion.h>
 #include <pytheas/changeThresholdService.h>
@@ -55,7 +53,6 @@
 #include "turtlebot.hpp"
 #include "controlMotion.hpp"
 #include "cam.hpp"
-
 
 /**
  * @brief Testing the changeThresholdService
@@ -132,7 +129,5 @@ TEST(test_Services, take_image_service) {
 int main(int argc, char** argv) {
   ros::init(argc, argv, "test_services");
   ::testing::InitGoogleTest(&argc, argv);
-  auto res = RUN_ALL_TESTS();
-  ros::shutdown();
-  return res;
+  return RUN_ALL_TESTS();;
 }

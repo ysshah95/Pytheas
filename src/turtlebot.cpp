@@ -42,14 +42,13 @@
  * @copyright BSD 3-Clause License
  */
 
+// Including C++, ROS and user defined header files
 #include <stdlib.h>
 #include <ros/ros.h>
 #include <geometry_msgs/Twist.h>
 #include <pytheas/takeImageService.h>
 #include "turtlebot.hpp"
- /**
- * @brief Turtlebot constructor
- */
+
 Turtlebot::Turtlebot()
         : publishedMessagesCount(0) {
     controlMotion = std::make_shared<ControlMotion>(0.25);
@@ -84,9 +83,6 @@ Turtlebot::Turtlebot()
             > ("/mobile_base/commands/velocity", 1000);
 }
 
-/**
- * @brief drive the turtlebot autonomously using laser scan data as sensor feedback
- */
 void Turtlebot::drive() {
     // Grab current vehicle action:
     geometry_msgs::Twist vehicleCommand = controlMotion->getVehicleAction();

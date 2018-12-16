@@ -43,6 +43,7 @@
  * @copyright BSD 3-Clause License
  */
 
+// Including C++, ROS header files
 #include "testSetUp.hpp"
 #include "ros/ros.h"
 #include "geometry_msgs/Twist.h"

@@ -42,11 +42,13 @@
  * @copyright BSD 3-Clause License
  */
 
+// Including ROS, C++ and user defined header files
 #include <ros/ros.h>
 #include <gtest/gtest.h>
 #include "turtlebot.hpp"
+
  /**
- * @brief Test that should pass
+ * @brief Turtlebot class Test that checks command publisher
  */
 
 TEST(TurtlebotTest, drive_command_publisher) {

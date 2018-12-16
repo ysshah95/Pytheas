@@ -42,9 +42,17 @@
  * @copyright BSD 3-Clause License
  */
 
+// Including C++ and ROS header files
 #include <stdlib.h>
 #include <ros/ros.h>
 #include <geometry_msgs/Twist.h>
+#include <sensor_msgs/LaserScan.h>
+// including user-defined Header file and service files
+#include <pytheas/changeSpeedService.h>
+#include <pytheas/togglePauseMotion.h>
+#include <pytheas/changeThresholdService.h>
+// Include user defined header files
+#include "detectObject.hpp"
 #include "controlMotion.hpp"
 
 ControlMotion::ControlMotion(double forwardSpeed)
@@ -53,7 +61,7 @@ ControlMotion::ControlMotion(double forwardSpeed)
       obstaclePresent(false),
       obstacleCounter(0) {
     detectObject = std::make_shared<DetectObject>(1.0);
-    // Initialize turtlebot action to stay still:
+    // Give these velocity commands to stay still
     vehicleAction.linear.x = 0.0;
     vehicleAction.linear.y = 0.0;
     vehicleAction.linear.z = 0.0;
@@ -62,22 +70,21 @@ ControlMotion::ControlMotion(double forwardSpeed)
     vehicleAction.angular.z = 0.0;
 }
 
-
 void ControlMotion::determineAction(
     const sensor_msgs::LaserScan::ConstPtr& msg) {
     geometry_msgs::Twist action;
+    // Note: The "stop motion" command
+    // wouldn't work with a zero velocity, so a very small angular
+    // velocity is set to appear to stop in place
     action.linear.x = 0.0;
     action.linear.y = 0.0;
     action.linear.z = 0.0;
     action.angular.x = 0.0;
     action.angular.y = 0.0;
     action.angular.z = 0.000000001;
-    // Note: The "stop motion" command
-    // wouldn't work with a zero velocity, so a very small angular
-    // velocity is set to appear to stop in place
 
-    // If we are not pausing the motion, set either forward speed
-    //   or angular speed
+    // Set either forward speed or angular speed, if we are not
+    // pausing the motion.
     if (pauseMotion == false) {
         if (detectObject->detectObstacle(*msg)) {
         // If this is the first time we've entered a collision state,
@@ -120,9 +127,6 @@ void ControlMotion::determineAction(
     vehicleAction = action;
 }
 
-/**
- * @brief Response to the change speed service to set forward speed
- */
 bool ControlMotion::changeSpeed(
     pytheas::changeSpeedService::Request &req,
     pytheas::changeSpeedService::Response &resp) {
@@ -135,9 +139,6 @@ bool ControlMotion::changeSpeed(
     return resp.resp;
 }
 
-/**
- * @brief Response to the change threshold service to set distance threshold
- */
 bool ControlMotion::changeThreshold(
     pytheas::changeThresholdService::Request &req,
     pytheas::changeThresholdService::Response &resp) {
@@ -150,9 +151,6 @@ bool ControlMotion::changeThreshold(
     return resp.resp;
 }
 
-/**
- * @brief Response to the toggle pause motion service
- */
 bool ControlMotion::togglePause(
     pytheas::togglePauseMotion::Request &req,
     pytheas::togglePauseMotion::Response &resp) {

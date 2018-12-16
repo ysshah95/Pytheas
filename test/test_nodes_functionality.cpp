@@ -40,7 +40,7 @@
  * @copyright BSD 3-Clause License
  */
 
-// Including header files
+// Including ROS, C++ and user defined header files
 #include <gtest/gtest.h>
 #include "ros/ros.h"
 #include "sensor_msgs/LaserScan.h"
@@ -52,9 +52,7 @@
 #include "testSetUp.hpp"
 
 /**
- * @brief To test determine action function of MotionController class in a situation when there is no obstacle
- * @param none
- * @return none
+ * @brief To test determine action function of MotionController class
  */
 TEST(CallbackFunctionTesting, doesNotCollideTest) {
   ros::NodeHandle nh;
@@ -104,9 +102,6 @@ TEST(CallbackFunctionTesting, doesNotCollideTest) {
 
 /**
  * @brief To test determine action function of MotionController class
- * in a situation when there is an obstacle
- * @param none
- * @return none
  */
 TEST(TestingCallbacks, collisionTest) {
   ros::NodeHandle nh;
@@ -130,8 +125,7 @@ TEST(TestingCallbacks, collisionTest) {
   msg.angular.y = 0.0;
   msg.angular.z = 1.0;
 
-  // Prepare the data
-  // create dummy laser scan msg to provide a fake non-obstacle collision
+  // Prepare the data to provide a fake non-obstacle collision
   size_t num_readings = 50;
   sensor_msgs::LaserScan scan;
   scan.angle_min = -1.57;
@@ -156,8 +150,6 @@ TEST(TestingCallbacks, collisionTest) {
 
 /**
  * @brief To test whether the velocity publisher is initialize properly or not
- * @param none
- * @return none
  */
 TEST(CallbackFunctionTesting, velocity_callback) {
   ros::NodeHandle nh;
@@ -172,8 +164,6 @@ TEST(CallbackFunctionTesting, velocity_callback) {
 
 /**
  * @brief To test whether the camera subscriber is initialize properly or not
- * @param none
- * @return none
  */
 TEST(CallbackFunctionTesting, camClass_callback) {
   ros::NodeHandle nh;
@@ -187,8 +177,6 @@ TEST(CallbackFunctionTesting, camClass_callback) {
 
 /**
  * @brief To test whether the laser subscriber is initialize properly or not
- * @param none
- * @return none
  */
 TEST(CallbackFunctionTesting, laserData_callback) {
   ros::NodeHandle nh;
@@ -202,8 +190,6 @@ TEST(CallbackFunctionTesting, laserData_callback) {
 
 /**
  * @brief To test whether the camera callback function
- * @param none
- * @return none
  */
 TEST(TestingCallbacks, camera_callback) {
   ros::NodeHandle nh;

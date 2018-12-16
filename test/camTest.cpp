@@ -37,21 +37,23 @@
  * @version 1.0
  * @brief Unit tests for the Cam class
  * 
- * This file is used to run all unit tests for the Camera ROS node
+ * This file is used to run all unit tests for the Camera class
  * 
  * @copyright BSD 3-Clause License
  */
 
+// Including ROS, C++ and user defined header files
 #include <ros/ros.h>
 #include <gtest/gtest.h>
 #include "cam.hpp"
+
  /**
- * @brief Test that should pass
+ * @brief Cam class Test that should pass
  */
-TEST(CameraTest, Initialization_Test) {
+TEST(CameraTest, Initialization_Test_Length_Array) {
   std::shared_ptr<Cam> cam{nullptr};
   cam = std::make_shared<Cam>();
 
-  //- Need to test the length of the array, too
+  // Need to test the length of the array
   EXPECT_EQ(0, cam->getSavedImageFilenames().size());
 }

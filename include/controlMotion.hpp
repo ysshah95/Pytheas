@@ -45,16 +45,18 @@
 #ifndef INCLUDE_CONTROLMOTION_HPP_
 #define INCLUDE_CONTROLMOTION_HPP_
 
+// Including C++ and ROS header files
 #include <stdlib.h>
 #include <ros/ros.h>
 #include <geometry_msgs/Twist.h>
 #include <sensor_msgs/LaserScan.h>
+// including user-defined Header file and service files
 #include <pytheas/changeSpeedService.h>
 #include <pytheas/togglePauseMotion.h>
 #include <pytheas/changeThresholdService.h>
+// Include user defined header files
 #include "detectObject.hpp"
-
-
+#include "controlMotion.hpp"
 
 /**
  * @brief controlMotion class handles determining turtlebot control actions
@@ -63,43 +65,69 @@ class ControlMotion {
  public:
   /**
    * @brief ControlMotion constructor
+   * @param forwardspeed of type double
+   * @return none
    */
   explicit ControlMotion(double forwardSpeed);
 
    /**
-   * @brief Determine a turtlebot action based on results from the obstacle detector
+   * @brief Determine a turtlebot action based on results from 
+   *        the obstacle detector
+   * @param Reference to a variable of type sensor_msgs::LaserScan
+   * @return void
    */
   void determineAction(const sensor_msgs::LaserScan::ConstPtr& msg);
 
    /**
    * @brief change the forward speed of the robot
+   * @param speed of type double
+   * @return none
    */
   void setForwardSpeed(double speed);
 
    /**
    * @brief return the current forward speed of the robot
+   * @param none
+   * @return robot's linear speed data of type double
    */
   double getForwardSpeed();
 
 	/**
 	 * @brief return the current vehicle action
+   * @param none
+   * @return robot's velocity data of type geometry_msgs::Twis
 	 */
   geometry_msgs::Twist getVehicleAction();
 
   /**
    * @brief Response to the change speed service to set forward speed
+   * @param Reference to a request variable of type defined in 
+   *        changeSpeedService.srv file
+   * @param Reference to a response variable of type defined in 
+   *        changeSpeedService.srv file
+   * @return a boolean value of success or failure
    */
   bool changeSpeed(pytheas::changeSpeedService::Request &req,
                    pytheas::changeSpeedService::Response &resp);
 
   /**
    * @brief Response to the change threshold service to set distance threshold
+   * @param Reference to a request variable of type defined in 
+   *        changeThresholdService.srv file
+   * @param Reference to a response variable of type defined in 
+   *        changeThresholdService.srv file
+   * @return a boolean value of success or failure
    */
   bool changeThreshold(pytheas::changeThresholdService::Request &req,
                        pytheas::changeThresholdService::Response &resp);
 
   /**
    * @brief Response to the toggle pause motion service
+   * @param Reference to a request variable of type defined in 
+   *        togglePauseMotion.srv file
+   * @param a reference to a response variable of type defined in 
+   *        togglePauseMotion.srv file
+   * @return a boolean value of success or failure
    */
   bool togglePause(pytheas::togglePauseMotion::Request &req,
                    pytheas::togglePauseMotion::Response &resp);

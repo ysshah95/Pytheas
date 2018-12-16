@@ -45,16 +45,24 @@
 #ifndef INCLUDE_CAM_HPP_
 #define INCLUDE_CAM_HPP_
 
+// including C++, ROS and service Header files
 #include <stdlib.h>
 #include <ros/ros.h>
 #include <sensor_msgs/Image.h>
 #include <pytheas/takeImageService.h>
-
+#include <cv_bridge/cv_bridge.h>
+#include <sensor_msgs/image_encodings.h>
 #include <string>
 #include <vector>
 
+// including image_transport header file which is used for publishing and
+// subscribing to images in ROS
+#include "image_transport/image_transport.h"
 
-
+// including the headers for OpenCV's image processing and GUI modules
+#include <opencv2/imgproc/imgproc.hpp>
+#include <opencv2/core/core.hpp>
+#include <opencv2/highgui/highgui.hpp>
 
 /**
  * @brief Cam class handles viewing onboard imagery and taking images
@@ -64,20 +72,34 @@ class Cam {
  public:
   /**
    * @brief Cam constructor
+   * @param none
+   * @return none
    */
   Cam();
 
   /**
    * @brief Take an image of the current RGB camera view for later analysis
+   * @param Reference to a request variable of type defined in 
+   *        takeImageService.srv file
+   * @param Rreference to a response variable of type defined in 
+   *        takeImageService.srv file
+   * @return a boolean value of success or failure
    */
   bool takeImage(pytheas::takeImageService::Request &req,
     pytheas::takeImageService::Response &resp);
 
   /**
 	 * @brief Camera topic callback takes a picture if flag has been set
+   * @param a reference to a variable of type sensor_msgs::Image
+   * @return none
 	 */
   void cameraCallback(const sensor_msgs::ImageConstPtr& msg);
 
+  /**
+   * @brief Get names of the Image files saved
+   * @param none
+   * @return a vector of image file names
+   */
   std::vector<std::string> getSavedImageFilenames();
 
  private:

@@ -42,12 +42,19 @@
  * @copyright BSD 3-Clause License
  */
 
+// Including ROS and C++ header files
 #include <ros/ros.h>
 #include <gtest/gtest.h>
 
+/**
+ * @brief Main function for testing, runs all the tests that were declared
+ *        with TEST()
+ * @param argc  The argc as int
+ * @param argv  The argv as char array
+ * @return 0, if everything is successful
+ */
 int main(int argc, char** argv) {
     ros::init(argc, argv, "enpm808_finalTest");
-
     ::testing::InitGoogleTest(&argc, argv);
     return RUN_ALL_TESTS();
 }

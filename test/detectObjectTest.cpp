@@ -42,6 +42,7 @@
  * @copyright BSD 3-Clause License
  */
 
+// Including ROS, C++ and user defined header files
 #include <ros/ros.h>
 #include <gtest/gtest.h>
 #include "detectObject.hpp"

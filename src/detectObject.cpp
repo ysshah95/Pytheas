@@ -42,10 +42,12 @@
  * @copyright BSD 3-Clause License
  */
 
+// Include c++, ROS and service header files
 #include <stdlib.h>
 #include <ros/ros.h>
+#include <sensor_msgs/LaserScan.h>
+#include <pytheas/changeThresholdService.h>
 #include "detectObject.hpp"
-
 
 DetectObject::DetectObject(double threshold)
     : distanceThreshold(threshold) {
@@ -53,7 +55,7 @@ DetectObject::DetectObject(double threshold)
 
 bool DetectObject::detectObstacle(
         const sensor_msgs::LaserScan msg) {
-    // Check if any scan from the laser is less than 0.75 meters
+    // Check if any scan from the laser is less than 'distancethreshold' meters
     //  from the front of the robot. If so, a collision is about to occur
     for (auto i : msg.ranges) {
         if (i < distanceThreshold) {
