@@ -42,10 +42,14 @@
  * @copyright BSD 3-Clause License
  */
 
+#ifndef INCLUDE_TURTLEBOT_HPP_
+#define INCLUDE_TURTLEBOT_HPP_
+
 #include <stdlib.h>
 #include <ros/ros.h>
 #include "controlMotion.hpp"
 #include "cam.hpp"
+#include <memory>
 
 /**
  * @brief Turtlebot class handles the camera and motion controller interactions for turtlebot
@@ -62,19 +66,17 @@ class Turtlebot {
    */
   void drive();
 
-  int getPublishedMessagesCount() {
-    return publishedMessagesCount;
-  };
+  int getPublishedMessagesCount();
 
  private:
   /**
    * @brief container for the camera object
    */
-  Cam *cam;
+  std::shared_ptr<Cam> cam{nullptr};
   /**
    * @brief container for the motion controller object
    */
-  ControlMotion *controlMotion;
+  std::shared_ptr<ControlMotion> controlMotion{nullptr};
   /**
    * @brief container for a ROS publisher to publish vehicle motion commands
    */
@@ -117,3 +119,5 @@ class Turtlebot {
    */
   int publishedMessagesCount;
 };
+
+#endif  // INCLUDE_TURTLEBOT_HPP_

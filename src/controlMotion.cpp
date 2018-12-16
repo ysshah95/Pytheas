@@ -52,7 +52,7 @@ ControlMotion::ControlMotion(double forwardSpeed)
       pauseMotion(false),
       obstaclePresent(false),
       obstacleCounter(0) {
-    detectObject = new DetectObject(1.0);
+    detectObject = std::make_shared<DetectObject>(1.0);
     // Initialize turtlebot action to stay still:
     vehicleAction.linear.x = 0.0;
     vehicleAction.linear.y = 0.0;
@@ -101,9 +101,9 @@ void ControlMotion::determineAction(
         // If we've been searching for a while, warn the operator
         //   that we may be stuck
         if (obstacleCounter > 1000) {
-            ROS_WARN_STREAM(
-                "Vehicle may be stuck. Manual intervention may be "
-                "required to continue.");
+            // ROS_WARN_STREAM(
+            //     "Vehicle may be stuck. Manual intervention may be "
+            //     "required to continue.");
         }
         } else {
         // Set turn rate to zero

@@ -52,31 +52,32 @@
  */
 Turtlebot::Turtlebot()
 		: publishedMessagesCount(0) {
-    controlMotion = new ControlMotion(0.25);
-    cam = new Cam();
+	
+    controlMotion = std::make_shared<ControlMotion>(0.25);
+	cam = std::make_shared<Cam>();
 
     // Set up subscribers
 	cameraSub = nh.subscribe < sensor_msgs::Image
-			> ("/camera/rgb/image_raw", 500, &Cam::cameraCallback, cam);
+			> ("/camera/rgb/image_raw", 500, &Cam::cameraCallback, cam.get());
 
  	laserSub = nh.subscribe < sensor_msgs::LaserScan
-			> ("/scan", 500, &ControlMotion::determineAction, controlMotion);
+			> ("/scan", 500, &ControlMotion::determineAction, controlMotion.get());
 
  	// Register services with the master
 	takeImageServer = nh.advertiseService("takeImageService", &Cam::takeImage,
-											cam);
+											cam.get());
 
 	changeThresholdServer = nh.advertiseService(
 		"changeThresholdService", &ControlMotion::changeThreshold,
-											controlMotion);
+											controlMotion.get());
 
 	changeSpeedServer = nh.advertiseService("changeSpeedService",
 											&ControlMotion::changeSpeed,
-											controlMotion);
+											controlMotion.get());
 
 	togglePauseServer = nh.advertiseService("togglePauseMotionService",
 											&ControlMotion::togglePause,
-											controlMotion);
+											controlMotion.get());
 	
 	// Set up publisher:
 	drivePub = nh.advertise < geometry_msgs::Twist
@@ -93,4 +94,8 @@ void Turtlebot::drive() {
 	drivePub.publish(vehicleCommand);
 	// Increment published message counter:
   	publishedMessagesCount++;
+}
+
+int Turtlebot::getPublishedMessagesCount() {
+    return publishedMessagesCount;
 }

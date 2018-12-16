@@ -42,6 +42,10 @@
  * @copyright BSD 3-Clause License
  */
 
+#ifndef INCLUDE_CAM_HPP_
+#define INCLUDE_CAM_HPP_
+
+
 #include <string>
 #include <vector>
 #include <stdlib.h>
@@ -98,3 +102,5 @@ class Cam {
    */
   ros::NodeHandle nh;
 };
+
+#endif  // INCLUDE_CAM_HPP_

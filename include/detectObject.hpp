@@ -42,6 +42,9 @@
  * @copyright BSD 3-Clause License
  */
 
+#ifndef INCLUDE_DETECTOBJECT_HPP_
+#define INCLUDE_DETECTOBJECT_HPP_
+
 #include <stdlib.h>
 #include <ros/ros.h>
 #include <sensor_msgs/LaserScan.h>
@@ -89,3 +92,5 @@ class DetectObject {
    */
   double distanceThreshold;
 };
+
+#endif  // INCLUDE_DETECTOBJECT_HPP_

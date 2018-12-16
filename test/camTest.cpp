@@ -49,7 +49,8 @@
  * @brief Test that should pass
  */
 TEST(CameraTest, Initialization_Test) {
-  Cam *cam = new Cam();
+  std::shared_ptr<Cam> cam{nullptr};
+  cam = std::make_shared<Cam>();
 
   //- Need to test the length of the array, too
   EXPECT_EQ(0, cam->getSavedImageFilenames().size());

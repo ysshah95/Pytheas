@@ -57,8 +57,9 @@ int main(int argc, char **argv) {
    // Set up the publisher rate to 10 Hz
   ros::Rate loop_rate(10);
 
-  // Vehicle container
-	Turtlebot *turtlebot = new Turtlebot();
+  // Turtlebot container
+	std::shared_ptr<Turtlebot> turtlebot{nullptr};
+  turtlebot = std::make_shared<Turtlebot>();
 
   while (ros::ok()) {
 

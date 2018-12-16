@@ -42,6 +42,9 @@
  * @copyright BSD 3-Clause License
  */
 
+#ifndef INCLUDE_CONTROLMOTION_HPP_
+#define INCLUDE_CONTROLMOTION_HPP_
+
 #include <stdlib.h>
 #include <ros/ros.h>
 #include <geometry_msgs/Twist.h>
@@ -105,7 +108,7 @@ class ControlMotion {
   /**
    * @brief container for an obstacle detector for the turtlebot
    */
-  DetectObject *detectObject;
+  std::shared_ptr<DetectObject> detectObject{nullptr};
 
    /**
    * @brief container for the forward speed of the turtlebot
@@ -132,3 +135,5 @@ class ControlMotion {
    */
   int obstacleCounter;
 };
+
+#endif  // INCLUDE_CONTROLMOTION_HPP_
