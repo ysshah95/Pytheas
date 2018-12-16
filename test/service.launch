@@ -1,5 +1,5 @@
 <launch>
   <node pkg="pytheas" name="FinalProject"  type="turtlebotFinal" output="screen" required="true" />
-  <test pkg="pytheas" test-name="enpm808_finalTest" type="turtlebotFinalTest" />
+  <test pkg="pytheas" test-name="test_service_functionality" type="test_service_functionality" />
 
 </launch>

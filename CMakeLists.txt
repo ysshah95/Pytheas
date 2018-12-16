@@ -133,6 +133,7 @@ catkin_package(
 find_package( OpenCV REQUIRED COMPONENTS core imgproc highgui )
 include_directories(
   include
+  test
   ${catkin_INCLUDE_DIRS}
   ${OpenCV_INCLUDE_DIRS}
 )
@@ -236,6 +237,35 @@ if (CATKIN_ENABLE_TESTING)
     turtlebotFinal
     ${catkin_EXPORTED_TARGETS}
   )
+
+  add_rostest_gtest(
+    test_service_functionality
+    test/service.launch
+    test/test_service_functionality.cpp
+  )
+
+  target_link_libraries(test_service_functionality ${catkin_LIBRARIES} ${OpenCV_LIBS})
+  add_dependencies(
+    test_service_functionality
+    turtlebotFinal
+    ${catkin_EXPORTED_TARGETS}
+  )
+
+  add_rostest_gtest(
+    test_nodes_functionality
+    test/node.launch
+    test/test_nodes_functionality.cpp
+    test/testSetUp.cpp
+  )
+
+  target_link_libraries(test_nodes_functionality ${catkin_LIBRARIES} ${OpenCV_LIBS})
+  add_dependencies(
+    test_nodes_functionality
+    turtlebotFinal
+    ${catkin_EXPORTED_TARGETS}
+  )
+  
+
   endif()
 
 ## Add folders to be run by python nosetests
