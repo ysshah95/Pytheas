@@ -21,7 +21,7 @@
         pkg="rosbag"
         name="record"
         type="record"
-        args="-a -O enpm808Final.bag -x /camera/(.*)"
+        args="--duration=30.0 -a -x /camera/(.*) -O $(find pytheas)/results/pytheas.bag"
         if="$(arg record)"
     />
 </launch>
