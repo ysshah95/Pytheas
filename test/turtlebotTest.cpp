@@ -49,6 +49,25 @@
  * @brief Test that should pass
  */
 
-TEST(TestSuite, turtlebot_should_pass) {
-  EXPECT_EQ(1, 1);
+TEST(TurtlebotTest, drive_command_publisher) {
+  // Handle for the process node. Will handle initialization and
+  //   cleanup of the node
+  ros::NodeHandle n;
+
+  // Vehicle container
+  std::shared_ptr<Turtlebot> turtlebot{nullptr};
+  turtlebot = std::make_shared<Turtlebot>();
+  // Turtlebot *turtlebot = new Turtlebot();
+
+  // Check that we've published a message:
+  EXPECT_EQ(0, turtlebot->getPublishedMessagesCount());
+
+  // While we are running, drive the vehicle autonomously
+  turtlebot->drive();
+
+  // "Spin" a callback in case we set up any callbacks
+  ros::spinOnce();
+
+  // Check that we've published a message:
+  EXPECT_EQ(1, turtlebot->getPublishedMessagesCount());
 }
