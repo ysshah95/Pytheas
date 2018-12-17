@@ -19,7 +19,7 @@ This repository is created as a Final Project for ACME Robotics (ENPM808X: Softw
 Few applications of the projects include:
 * Navigation of known environments like offices and factories.
 * Explorer bot to aid rescue efforts during natural disasters.
-* Remote Survaillence 
+* Remote Surveillance
 
 <p align="center">
 <a target="_blank"><img src="world/world_image.png" width="720" height="400" border="5" />
@@ -81,8 +81,7 @@ Solo Iterative process was used for developing this package. For detailed spread
 Link to Sprint Planning Notes: [Sprint Notes Link](https://docs.google.com/document/d/1sPE6u5NXbfY2vVXfAyPOCJBkPIRnAFAd8C1skGe4AzY/edit?usp=sharing)
 
 ## Presentation 
-Click here to access the presentation video : [Presentation](https://docs.google.com/document/d/1sPE6u5NXbfY2vVXfAyPOCJBkPIRnAFAd8C1skGe4AzY/edit?usp=sharing)
-
+Click here to access the presentation video : [Presentation](https://youtu.be/tE91jcoHyKs)
 
 # Build Steps
 
@@ -236,18 +235,16 @@ The documentation for this project is created using doxygen-gui. To generate the
 
 ```
 sudo apt-get install doxygen
-sudo apt-get install doxywizard
+sudo apt-get install doxygen-gui
 doxywizard
 ```
 
-The documentation for this project can be found at the path documentation/html/index.html.
+The documentation for this project can be found at the path docs/html/index.html.
 
 Once the gui is open, select the workspace as the repository. Fill the details as required and set the source code folder to this repository. As a destination directory, create a new folder "Documentation" in the repository and select it. Following the further steps would create the documentation.
 
 
 
 ## Known Issues/Bugs 
-Following are the known bugs with the current build:
-```
-TODO
-```
+
+The map created by current build is okay but not perfect. To make it more accurate, I think the autonomous navigation algorithm needs to be changed. I have used the walker (roomba type algorithm) algorithm, but it does go to every place of the environment. Hence, a random navigation algorithm along with walker algorithm could be more beneficial.  
