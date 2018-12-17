@@ -1,0 +1,116 @@
+\hypertarget{class_cam}{}\section{Cam Class Reference}
+\label{class_cam}\index{Cam@{Cam}}
+
+
+\hyperlink{class_cam}{Cam} class handles viewing onboard imagery and taking images.  
+
+
+
+
+{\ttfamily \#include $<$cam.\+hpp$>$}
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{class_cam_a687a277355267302cbacb0713f51a136}{Cam} ()
+\begin{DoxyCompactList}\small\item\em \hyperlink{class_cam}{Cam} constructor. \end{DoxyCompactList}\item 
+bool \hyperlink{class_cam_a75754ce45e540cb279b408a1749dc01e}{take\+Image} (pytheas\+::take\+Image\+Service\+::\+Request \&req, pytheas\+::take\+Image\+Service\+::\+Response \&resp)
+\begin{DoxyCompactList}\small\item\em Take an image of the current R\+GB camera view for later analysis. \end{DoxyCompactList}\item 
+void \hyperlink{class_cam_af3c02a8786dc1c4cf1e4587edd28fa94}{camera\+Callback} (const sensor\+\_\+msgs\+::\+Image\+Const\+Ptr \&msg)
+\begin{DoxyCompactList}\small\item\em Camera topic callback takes a picture if flag has been set. \end{DoxyCompactList}\item 
+std\+::vector$<$ std\+::string $>$ \hyperlink{class_cam_a8ad5af2354661d3fdf432f8cc6ebacdd}{get\+Saved\+Image\+Filenames} ()
+\begin{DoxyCompactList}\small\item\em Get names of the Image files saved. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+\hyperlink{class_cam}{Cam} class handles viewing onboard imagery and taking images. 
+
+\subsection{Constructor \& Destructor Documentation}
+\index{Cam@{Cam}!Cam@{Cam}}
+\index{Cam@{Cam}!Cam@{Cam}}
+\subsubsection[{\texorpdfstring{Cam()}{Cam()}}]{\setlength{\rightskip}{0pt plus 5cm}Cam\+::\+Cam (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hypertarget{class_cam_a687a277355267302cbacb0713f51a136}{}\label{class_cam_a687a277355267302cbacb0713f51a136}
+
+
+\hyperlink{class_cam}{Cam} constructor. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em none} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+none 
+\end{DoxyReturn}
+
+
+\subsection{Member Function Documentation}
+\index{Cam@{Cam}!camera\+Callback@{camera\+Callback}}
+\index{camera\+Callback@{camera\+Callback}!Cam@{Cam}}
+\subsubsection[{\texorpdfstring{camera\+Callback(const sensor\+\_\+msgs\+::\+Image\+Const\+Ptr \&msg)}{cameraCallback(const sensor_msgs::ImageConstPtr &msg)}}]{\setlength{\rightskip}{0pt plus 5cm}void Cam\+::camera\+Callback (
+\begin{DoxyParamCaption}
+\item[{const sensor\+\_\+msgs\+::\+Image\+Const\+Ptr \&}]{msg}
+\end{DoxyParamCaption}
+)}\hypertarget{class_cam_af3c02a8786dc1c4cf1e4587edd28fa94}{}\label{class_cam_af3c02a8786dc1c4cf1e4587edd28fa94}
+
+
+Camera topic callback takes a picture if flag has been set. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em a} & reference to a variable of type sensor\+\_\+msgs\+::\+Image \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+none 
+\end{DoxyReturn}
+\index{Cam@{Cam}!get\+Saved\+Image\+Filenames@{get\+Saved\+Image\+Filenames}}
+\index{get\+Saved\+Image\+Filenames@{get\+Saved\+Image\+Filenames}!Cam@{Cam}}
+\subsubsection[{\texorpdfstring{get\+Saved\+Image\+Filenames()}{getSavedImageFilenames()}}]{\setlength{\rightskip}{0pt plus 5cm}std\+::vector$<$ std\+::string $>$ Cam\+::get\+Saved\+Image\+Filenames (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hypertarget{class_cam_a8ad5af2354661d3fdf432f8cc6ebacdd}{}\label{class_cam_a8ad5af2354661d3fdf432f8cc6ebacdd}
+
+
+Get names of the Image files saved. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em none} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+a vector of image file names 
+\end{DoxyReturn}
+\index{Cam@{Cam}!take\+Image@{take\+Image}}
+\index{take\+Image@{take\+Image}!Cam@{Cam}}
+\subsubsection[{\texorpdfstring{take\+Image(pytheas\+::take\+Image\+Service\+::\+Request \&req, pytheas\+::take\+Image\+Service\+::\+Response \&resp)}{takeImage(pytheas::takeImageService::Request &req, pytheas::takeImageService::Response &resp)}}]{\setlength{\rightskip}{0pt plus 5cm}bool Cam\+::take\+Image (
+\begin{DoxyParamCaption}
+\item[{pytheas\+::take\+Image\+Service\+::\+Request \&}]{req, }
+\item[{pytheas\+::take\+Image\+Service\+::\+Response \&}]{resp}
+\end{DoxyParamCaption}
+)}\hypertarget{class_cam_a75754ce45e540cb279b408a1749dc01e}{}\label{class_cam_a75754ce45e540cb279b408a1749dc01e}
+
+
+Take an image of the current R\+GB camera view for later analysis. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em Reference} & to a request variable of type defined in take\+Image\+Service.\+srv file \\
+\hline
+{\em Rreference} & to a response variable of type defined in take\+Image\+Service.\+srv file \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+a boolean value of success or failure 
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+src/\+Pytheas/include/\hyperlink{cam_8hpp}{cam.\+hpp}\item 
+src/\+Pytheas/src/\hyperlink{cam_8cpp}{cam.\+cpp}\end{DoxyCompactItemize}

@@ -90,6 +90,20 @@
 \setcounter{secnumdepth}{5}
 \makeindex
 
+% Hyperlinks (required, but should be loaded last)
+\usepackage{ifpdf}
+\ifpdf
+  \usepackage[pdftex,pagebackref=true]{hyperref}
+\else
+  \usepackage[ps2pdf,pagebackref=true]{hyperref}
+\fi
+\hypersetup{%
+  colorlinks=true,%
+  linkcolor=blue,%
+  citecolor=blue,%
+  unicode%
+}
+
 % Custom commands
 \newcommand{\clearemptydoublepage}{%
   \newpage{\pagestyle{empty}\cleardoublepage}%
@@ -103,6 +117,10 @@
 \begin{document}
 
 % Titlepage & ToC
+\hypersetup{pageanchor=false,
+             bookmarksnumbered=true,
+             pdfencoding=unicode
+            }
 \pagenumbering{roman}
 \begin{titlepage}
 \vspace*{7cm}
@@ -116,11 +134,32 @@
 \tableofcontents
 \clearemptydoublepage
 \pagenumbering{arabic}
+\hypersetup{pageanchor=true}
 
 %--- Begin generated contents ---
 \chapter{Project Pytheas}
-\label{md_README}
-\input{md_README}
+\label{md_src_Pytheas_README}
+\hypertarget{md_src_Pytheas_README}{}
+\input{md_src_Pytheas_README}
+\chapter{Class Index}
+\input{annotated}
+\chapter{File Index}
+\input{files}
+\chapter{Class Documentation}
+\input{class_cam}
+\input{class_control_motion}
+\input{class_detect_object}
+\input{class_turtlebot}
+\chapter{File Documentation}
+\input{cam_8hpp}
+\input{control_motion_8hpp}
+\input{detect_object_8hpp}
+\input{turtlebot_8hpp}
+\input{cam_8cpp}
+\input{control_motion_8cpp}
+\input{detect_object_8cpp}
+\input{main_8cpp}
+\input{turtlebot_8cpp}
 %--- End generated contents ---
 
 % Index

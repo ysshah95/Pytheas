@@ -1,0 +1,206 @@
+\hypertarget{class_control_motion}{}\section{Control\+Motion Class Reference}
+\label{class_control_motion}\index{Control\+Motion@{Control\+Motion}}
+
+
+control\+Motion class handles determining turtlebot control actions  
+
+
+
+
+{\ttfamily \#include $<$control\+Motion.\+hpp$>$}
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{class_control_motion_a7f8e9917794cddce17cd6626d4f6de99}{Control\+Motion} (double forward\+Speed)
+\begin{DoxyCompactList}\small\item\em \hyperlink{class_control_motion}{Control\+Motion} constructor. \end{DoxyCompactList}\item 
+void \hyperlink{class_control_motion_a931381d78d7ae540390783cf2d6f17f3}{determine\+Action} (const sensor\+\_\+msgs\+::\+Laser\+Scan\+::\+Const\+Ptr \&msg)
+\begin{DoxyCompactList}\small\item\em Determine a turtlebot action based on results from the obstacle detector. \end{DoxyCompactList}\item 
+void \hyperlink{class_control_motion_a4848f58ac1fe99f22d09de221e41e467}{set\+Forward\+Speed} (double speed)
+\begin{DoxyCompactList}\small\item\em change the forward speed of the robot \end{DoxyCompactList}\item 
+double \hyperlink{class_control_motion_a0fd730a5681ddd611996931656336fee}{get\+Forward\+Speed} ()
+\begin{DoxyCompactList}\small\item\em return the current forward speed of the robot \end{DoxyCompactList}\item 
+geometry\+\_\+msgs\+::\+Twist \hyperlink{class_control_motion_a24774c339cc8e596c549b000559c68f6}{get\+Vehicle\+Action} ()
+\begin{DoxyCompactList}\small\item\em return the current vehicle action \end{DoxyCompactList}\item 
+bool \hyperlink{class_control_motion_ae9000cdbf748a71180f2c6eb37317f13}{change\+Speed} (pytheas\+::change\+Speed\+Service\+::\+Request \&req, pytheas\+::change\+Speed\+Service\+::\+Response \&resp)
+\begin{DoxyCompactList}\small\item\em Response to the change speed service to set forward speed. \end{DoxyCompactList}\item 
+bool \hyperlink{class_control_motion_a313040345bf7593c8d95d78700ec56cb}{change\+Threshold} (pytheas\+::change\+Threshold\+Service\+::\+Request \&req, pytheas\+::change\+Threshold\+Service\+::\+Response \&resp)
+\begin{DoxyCompactList}\small\item\em Response to the change threshold service to set distance threshold. \end{DoxyCompactList}\item 
+bool \hyperlink{class_control_motion_a90401a7a1358868b9b94cec844fb7695}{toggle\+Pause} (pytheas\+::toggle\+Pause\+Motion\+::\+Request \&req, pytheas\+::toggle\+Pause\+Motion\+::\+Response \&resp)
+\begin{DoxyCompactList}\small\item\em Response to the toggle pause motion service. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+control\+Motion class handles determining turtlebot control actions 
+
+\subsection{Constructor \& Destructor Documentation}
+\index{Control\+Motion@{Control\+Motion}!Control\+Motion@{Control\+Motion}}
+\index{Control\+Motion@{Control\+Motion}!Control\+Motion@{Control\+Motion}}
+\subsubsection[{\texorpdfstring{Control\+Motion(double forward\+Speed)}{ControlMotion(double forwardSpeed)}}]{\setlength{\rightskip}{0pt plus 5cm}Control\+Motion\+::\+Control\+Motion (
+\begin{DoxyParamCaption}
+\item[{double}]{forward\+Speed}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [explicit]}}\hypertarget{class_control_motion_a7f8e9917794cddce17cd6626d4f6de99}{}\label{class_control_motion_a7f8e9917794cddce17cd6626d4f6de99}
+
+
+\hyperlink{class_control_motion}{Control\+Motion} constructor. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em forwardspeed} & of type double \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+none 
+\end{DoxyReturn}
+
+
+\subsection{Member Function Documentation}
+\index{Control\+Motion@{Control\+Motion}!change\+Speed@{change\+Speed}}
+\index{change\+Speed@{change\+Speed}!Control\+Motion@{Control\+Motion}}
+\subsubsection[{\texorpdfstring{change\+Speed(pytheas\+::change\+Speed\+Service\+::\+Request \&req, pytheas\+::change\+Speed\+Service\+::\+Response \&resp)}{changeSpeed(pytheas::changeSpeedService::Request &req, pytheas::changeSpeedService::Response &resp)}}]{\setlength{\rightskip}{0pt plus 5cm}bool Control\+Motion\+::change\+Speed (
+\begin{DoxyParamCaption}
+\item[{pytheas\+::change\+Speed\+Service\+::\+Request \&}]{req, }
+\item[{pytheas\+::change\+Speed\+Service\+::\+Response \&}]{resp}
+\end{DoxyParamCaption}
+)}\hypertarget{class_control_motion_ae9000cdbf748a71180f2c6eb37317f13}{}\label{class_control_motion_ae9000cdbf748a71180f2c6eb37317f13}
+
+
+Response to the change speed service to set forward speed. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em Reference} & to a request variable of type defined in change\+Speed\+Service.\+srv file \\
+\hline
+{\em Reference} & to a response variable of type defined in change\+Speed\+Service.\+srv file \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+a boolean value of success or failure 
+\end{DoxyReturn}
+\index{Control\+Motion@{Control\+Motion}!change\+Threshold@{change\+Threshold}}
+\index{change\+Threshold@{change\+Threshold}!Control\+Motion@{Control\+Motion}}
+\subsubsection[{\texorpdfstring{change\+Threshold(pytheas\+::change\+Threshold\+Service\+::\+Request \&req, pytheas\+::change\+Threshold\+Service\+::\+Response \&resp)}{changeThreshold(pytheas::changeThresholdService::Request &req, pytheas::changeThresholdService::Response &resp)}}]{\setlength{\rightskip}{0pt plus 5cm}bool Control\+Motion\+::change\+Threshold (
+\begin{DoxyParamCaption}
+\item[{pytheas\+::change\+Threshold\+Service\+::\+Request \&}]{req, }
+\item[{pytheas\+::change\+Threshold\+Service\+::\+Response \&}]{resp}
+\end{DoxyParamCaption}
+)}\hypertarget{class_control_motion_a313040345bf7593c8d95d78700ec56cb}{}\label{class_control_motion_a313040345bf7593c8d95d78700ec56cb}
+
+
+Response to the change threshold service to set distance threshold. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em Reference} & to a request variable of type defined in change\+Threshold\+Service.\+srv file \\
+\hline
+{\em Reference} & to a response variable of type defined in change\+Threshold\+Service.\+srv file \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+a boolean value of success or failure 
+\end{DoxyReturn}
+\index{Control\+Motion@{Control\+Motion}!determine\+Action@{determine\+Action}}
+\index{determine\+Action@{determine\+Action}!Control\+Motion@{Control\+Motion}}
+\subsubsection[{\texorpdfstring{determine\+Action(const sensor\+\_\+msgs\+::\+Laser\+Scan\+::\+Const\+Ptr \&msg)}{determineAction(const sensor_msgs::LaserScan::ConstPtr &msg)}}]{\setlength{\rightskip}{0pt plus 5cm}void Control\+Motion\+::determine\+Action (
+\begin{DoxyParamCaption}
+\item[{const sensor\+\_\+msgs\+::\+Laser\+Scan\+::\+Const\+Ptr \&}]{msg}
+\end{DoxyParamCaption}
+)}\hypertarget{class_control_motion_a931381d78d7ae540390783cf2d6f17f3}{}\label{class_control_motion_a931381d78d7ae540390783cf2d6f17f3}
+
+
+Determine a turtlebot action based on results from the obstacle detector. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em Reference} & to a variable of type sensor\+\_\+msgs\+::\+Laser\+Scan \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+\index{Control\+Motion@{Control\+Motion}!get\+Forward\+Speed@{get\+Forward\+Speed}}
+\index{get\+Forward\+Speed@{get\+Forward\+Speed}!Control\+Motion@{Control\+Motion}}
+\subsubsection[{\texorpdfstring{get\+Forward\+Speed()}{getForwardSpeed()}}]{\setlength{\rightskip}{0pt plus 5cm}double Control\+Motion\+::get\+Forward\+Speed (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hypertarget{class_control_motion_a0fd730a5681ddd611996931656336fee}{}\label{class_control_motion_a0fd730a5681ddd611996931656336fee}
+
+
+return the current forward speed of the robot 
+
+
+\begin{DoxyParams}{Parameters}
+{\em none} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+robot\textquotesingle{}s linear speed data of type double 
+\end{DoxyReturn}
+\index{Control\+Motion@{Control\+Motion}!get\+Vehicle\+Action@{get\+Vehicle\+Action}}
+\index{get\+Vehicle\+Action@{get\+Vehicle\+Action}!Control\+Motion@{Control\+Motion}}
+\subsubsection[{\texorpdfstring{get\+Vehicle\+Action()}{getVehicleAction()}}]{\setlength{\rightskip}{0pt plus 5cm}geometry\+\_\+msgs\+::\+Twist Control\+Motion\+::get\+Vehicle\+Action (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hypertarget{class_control_motion_a24774c339cc8e596c549b000559c68f6}{}\label{class_control_motion_a24774c339cc8e596c549b000559c68f6}
+
+
+return the current vehicle action 
+
+
+\begin{DoxyParams}{Parameters}
+{\em none} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+robot\textquotesingle{}s velocity data of type geometry\+\_\+msgs\+::\+Twis 
+\end{DoxyReturn}
+\index{Control\+Motion@{Control\+Motion}!set\+Forward\+Speed@{set\+Forward\+Speed}}
+\index{set\+Forward\+Speed@{set\+Forward\+Speed}!Control\+Motion@{Control\+Motion}}
+\subsubsection[{\texorpdfstring{set\+Forward\+Speed(double speed)}{setForwardSpeed(double speed)}}]{\setlength{\rightskip}{0pt plus 5cm}void Control\+Motion\+::set\+Forward\+Speed (
+\begin{DoxyParamCaption}
+\item[{double}]{speed}
+\end{DoxyParamCaption}
+)}\hypertarget{class_control_motion_a4848f58ac1fe99f22d09de221e41e467}{}\label{class_control_motion_a4848f58ac1fe99f22d09de221e41e467}
+
+
+change the forward speed of the robot 
+
+
+\begin{DoxyParams}{Parameters}
+{\em speed} & of type double \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+none 
+\end{DoxyReturn}
+\index{Control\+Motion@{Control\+Motion}!toggle\+Pause@{toggle\+Pause}}
+\index{toggle\+Pause@{toggle\+Pause}!Control\+Motion@{Control\+Motion}}
+\subsubsection[{\texorpdfstring{toggle\+Pause(pytheas\+::toggle\+Pause\+Motion\+::\+Request \&req, pytheas\+::toggle\+Pause\+Motion\+::\+Response \&resp)}{togglePause(pytheas::togglePauseMotion::Request &req, pytheas::togglePauseMotion::Response &resp)}}]{\setlength{\rightskip}{0pt plus 5cm}bool Control\+Motion\+::toggle\+Pause (
+\begin{DoxyParamCaption}
+\item[{pytheas\+::toggle\+Pause\+Motion\+::\+Request \&}]{req, }
+\item[{pytheas\+::toggle\+Pause\+Motion\+::\+Response \&}]{resp}
+\end{DoxyParamCaption}
+)}\hypertarget{class_control_motion_a90401a7a1358868b9b94cec844fb7695}{}\label{class_control_motion_a90401a7a1358868b9b94cec844fb7695}
+
+
+Response to the toggle pause motion service. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em Reference} & to a request variable of type defined in toggle\+Pause\+Motion.\+srv file \\
+\hline
+{\em a} & reference to a response variable of type defined in toggle\+Pause\+Motion.\+srv file \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+a boolean value of success or failure 
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+src/\+Pytheas/include/\hyperlink{control_motion_8hpp}{control\+Motion.\+hpp}\item 
+src/\+Pytheas/src/\hyperlink{control_motion_8cpp}{control\+Motion.\+cpp}\end{DoxyCompactItemize}

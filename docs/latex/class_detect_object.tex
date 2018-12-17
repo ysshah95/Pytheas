@@ -1,0 +1,113 @@
+\hypertarget{class_detect_object}{}\section{Detect\+Object Class Reference}
+\label{class_detect_object}\index{Detect\+Object@{Detect\+Object}}
+
+
+detect\+Object class handles determining if the turtlebot is going to collide using laser scans  
+
+
+
+
+{\ttfamily \#include $<$detect\+Object.\+hpp$>$}
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{class_detect_object_acf8a913ce125f42a8adb0570af9899ec}{Detect\+Object} (double threshold)
+\begin{DoxyCompactList}\small\item\em Obstacle\+Detection constructor. \end{DoxyCompactList}\item 
+bool \hyperlink{class_detect_object_aeb729c9a9152c6814558abbf48672d49}{detect\+Obstacle} (const sensor\+\_\+msgs\+::\+Laser\+Scan msg)
+\begin{DoxyCompactList}\small\item\em Callback function for the laser scan. Detects if the vehicle is about to collide with an obstacle or not. \end{DoxyCompactList}\item 
+double \hyperlink{class_detect_object_a1f0077f9c5a397235088c405714057db}{get\+Distance\+Threshold} ()
+\begin{DoxyCompactList}\small\item\em return the current threshold for how close the vehicle should get to an object \end{DoxyCompactList}\item 
+void \hyperlink{class_detect_object_afa178e1d0839f02a395bdc2e0fa55a65}{set\+Distance\+Threshold} (double threshold)
+\begin{DoxyCompactList}\small\item\em set the threshold for how close the vehicle should get to an object \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+detect\+Object class handles determining if the turtlebot is going to collide using laser scans 
+
+\subsection{Constructor \& Destructor Documentation}
+\index{Detect\+Object@{Detect\+Object}!Detect\+Object@{Detect\+Object}}
+\index{Detect\+Object@{Detect\+Object}!Detect\+Object@{Detect\+Object}}
+\subsubsection[{\texorpdfstring{Detect\+Object(double threshold)}{DetectObject(double threshold)}}]{\setlength{\rightskip}{0pt plus 5cm}Detect\+Object\+::\+Detect\+Object (
+\begin{DoxyParamCaption}
+\item[{double}]{threshold}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [explicit]}}\hypertarget{class_detect_object_acf8a913ce125f42a8adb0570af9899ec}{}\label{class_detect_object_acf8a913ce125f42a8adb0570af9899ec}
+
+
+Obstacle\+Detection constructor. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em threshold} & of type double \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+none 
+\end{DoxyReturn}
+
+
+\subsection{Member Function Documentation}
+\index{Detect\+Object@{Detect\+Object}!detect\+Obstacle@{detect\+Obstacle}}
+\index{detect\+Obstacle@{detect\+Obstacle}!Detect\+Object@{Detect\+Object}}
+\subsubsection[{\texorpdfstring{detect\+Obstacle(const sensor\+\_\+msgs\+::\+Laser\+Scan msg)}{detectObstacle(const sensor_msgs::LaserScan msg)}}]{\setlength{\rightskip}{0pt plus 5cm}bool Detect\+Object\+::detect\+Obstacle (
+\begin{DoxyParamCaption}
+\item[{const sensor\+\_\+msgs\+::\+Laser\+Scan}]{msg}
+\end{DoxyParamCaption}
+)}\hypertarget{class_detect_object_aeb729c9a9152c6814558abbf48672d49}{}\label{class_detect_object_aeb729c9a9152c6814558abbf48672d49}
+
+
+Callback function for the laser scan. Detects if the vehicle is about to collide with an obstacle or not. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em Reference} & to a variable of type sensor\+\_\+msgs\+::\+Laser\+Scan \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+boolean value if the obstacle is detected or not 
+\end{DoxyReturn}
+\index{Detect\+Object@{Detect\+Object}!get\+Distance\+Threshold@{get\+Distance\+Threshold}}
+\index{get\+Distance\+Threshold@{get\+Distance\+Threshold}!Detect\+Object@{Detect\+Object}}
+\subsubsection[{\texorpdfstring{get\+Distance\+Threshold()}{getDistanceThreshold()}}]{\setlength{\rightskip}{0pt plus 5cm}double Detect\+Object\+::get\+Distance\+Threshold (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hypertarget{class_detect_object_a1f0077f9c5a397235088c405714057db}{}\label{class_detect_object_a1f0077f9c5a397235088c405714057db}
+
+
+return the current threshold for how close the vehicle should get to an object 
+
+
+\begin{DoxyParams}{Parameters}
+{\em none} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+threshold of type double 
+\end{DoxyReturn}
+\index{Detect\+Object@{Detect\+Object}!set\+Distance\+Threshold@{set\+Distance\+Threshold}}
+\index{set\+Distance\+Threshold@{set\+Distance\+Threshold}!Detect\+Object@{Detect\+Object}}
+\subsubsection[{\texorpdfstring{set\+Distance\+Threshold(double threshold)}{setDistanceThreshold(double threshold)}}]{\setlength{\rightskip}{0pt plus 5cm}void Detect\+Object\+::set\+Distance\+Threshold (
+\begin{DoxyParamCaption}
+\item[{double}]{threshold}
+\end{DoxyParamCaption}
+)}\hypertarget{class_detect_object_afa178e1d0839f02a395bdc2e0fa55a65}{}\label{class_detect_object_afa178e1d0839f02a395bdc2e0fa55a65}
+
+
+set the threshold for how close the vehicle should get to an object 
+
+
+\begin{DoxyParams}{Parameters}
+{\em threshold} & of type double \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+none 
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+src/\+Pytheas/include/\hyperlink{detect_object_8hpp}{detect\+Object.\+hpp}\item 
+src/\+Pytheas/src/\hyperlink{detect_object_8cpp}{detect\+Object.\+cpp}\end{DoxyCompactItemize}
