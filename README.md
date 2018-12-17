@@ -81,7 +81,9 @@ Solo Iterative process was used for developing this package. For detailed spread
 Link to Sprint Planning Notes: [Sprint Notes Link](https://docs.google.com/document/d/1sPE6u5NXbfY2vVXfAyPOCJBkPIRnAFAd8C1skGe4AzY/edit?usp=sharing)
 
 ## Presentation 
-Click here to access the presentation video : [Presentation](https://youtu.be/tE91jcoHyKs)
+Click here to access the presentation video : [Presentation Video](https://youtu.be/tE91jcoHyKs)
+
+Click here to access the presentation : [Presentation](https://docs.google.com/presentation/d/1mXSTLhhAfFJkN31ndFjWUDk0uE9zszrx1MzICtebjzU/edit?usp=sharing)
 
 # Build Steps
 
