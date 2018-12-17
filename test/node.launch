@@ -1,0 +1,5 @@
+<launch>
+  <node pkg="pytheas" name="FinalProject"  type="turtlebotFinal" output="screen" required="true" />
+  <test pkg="pytheas" test-name="test_nodes_functionality" type="test_nodes_functionality" />
+
+</launch>
